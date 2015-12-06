@@ -1,0 +1,21 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/MP3Clinic-FX/nbactions.xml
+/MP3Clinic-FX/nb-configuration.xml
+/TRest/Calculator/CalculatorClientApp/nbproject/private/
+/TRest/Calculator/CalculatorApp/nbproject/private/
+/TRest/Calculator/CalculatorClientApp/build/
+/TRest/MyFirstRestWS/nbproject/private/
+/TRest/MyFirstRestWS/build/
+/TRest/MyFirstRestWS/dist/
+/JavaApplication1/build/
