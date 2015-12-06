@@ -27,6 +27,7 @@
         <dependency>
             <groupId>org.fbarros</groupId>
             <artifactId>MP3Clinic-Kitchen</artifactId>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
     
