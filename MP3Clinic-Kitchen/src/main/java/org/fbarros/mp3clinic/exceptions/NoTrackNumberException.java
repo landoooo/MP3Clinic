@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.fbarros.mp3clinic;
+package org.fbarros.mp3clinic.exceptions;
 
 /**
  *
  * @author fernando
  */
-class NoTrackNumberException extends Exception {
+public class NoTrackNumberException extends Exception {
     
+    public NoTrackNumberException(Exception e){
+        super(e);
+    }
+
+    public NoTrackNumberException(){
+    }
 }

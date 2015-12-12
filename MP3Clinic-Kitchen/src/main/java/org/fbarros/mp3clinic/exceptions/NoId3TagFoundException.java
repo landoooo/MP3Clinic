@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.fbarros.mp3clinic;
+package org.fbarros.mp3clinic.exceptions;
 
 /**
  *
  * @author fernando
  */
-class NoId3TagFoundException extends Exception {
+public class NoId3TagFoundException extends Exception {
 
-    public NoId3TagFoundException() {
+    public NoId3TagFoundException(Exception e){
+        super(e);
+    }
+    public NoId3TagFoundException(){
     }
     
 }

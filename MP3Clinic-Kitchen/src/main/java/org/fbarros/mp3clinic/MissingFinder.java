@@ -5,9 +5,13 @@
  */
 package org.fbarros.mp3clinic;
 
+import org.fbarros.mp3clinic.exceptions.NoId3TagFoundException;
+import org.fbarros.mp3clinic.exceptions.NoTrackNumberException;
 import com.mpatric.mp3agic.ID3v1;
 import com.mpatric.mp3agic.ID3v2;
+import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
+import com.mpatric.mp3agic.UnsupportedTagException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -19,8 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.fbarros.mp3clinic.exceptions.ProcessingException;
 
 /**
  *
@@ -28,21 +31,19 @@ import org.slf4j.LoggerFactory;
  */
 public class MissingFinder {
 
-    //private static Logger logger = LoggerFactory.getLogger(MissingFinder.class);
-
-    public static List<Message> processGrupo(Path grupo) {
+    public static List<Message> processGrupo(Path grupo) throws ProcessingException {
         List<Message> messages = new ArrayList<>();
         try (DirectoryStream<Path> discos = Files.newDirectoryStream(grupo);) {
             for (Path disco : discos){
                 messages.addAll(processAlbum(disco));
             }
-        } catch (Exception e) {
-      //      logger.error("Error processing band " + grupo.getFileName());
+        } catch (IOException e) {
+            throw new ProcessingException();
         }
         return messages;
     }
 
-    public static List<Message> processAlbum(Path album) {
+    public static List<Message> processAlbum(Path album) throws ProcessingException {
 
         List<Message> messages = new ArrayList<>();
         try {
@@ -50,12 +51,12 @@ public class MissingFinder {
                 messages.add(new Message("Songs from folder >>" + album.toString() + "<< are not consecutive"));
             }
         } catch (Exception e) {
-        //    logger.error("Error processing album", e);
+            throw new ProcessingException();
         }
         return messages;
     }
 
-    public static boolean areSongsConsecutive(Path albumPath) {
+    public static boolean areSongsConsecutive(Path albumPath) throws ProcessingException {
 
         String[] extensions = new String[]{"mp3"};
         Collection<File> files = FileUtils.listFiles(albumPath.toFile(), extensions, false);
@@ -72,8 +73,8 @@ public class MissingFinder {
                     }
                     array[trackNumber - 1] = true;
                 }
-            } catch (Exception e) {
-          //      logger.error("Error checking consecutive songs on " + albumPath.toString(), e);
+            } catch (IOException|InvalidDataException|NoId3TagFoundException|NoTrackNumberException|UnsupportedTagException e) {
+                throw new ProcessingException();
             }
             return Arrays.asList(array).stream().allMatch(e -> e);
         }
@@ -93,13 +94,14 @@ public class MissingFinder {
         }
     }
 
-    public static List<Message> processLibrary(String libraryPath) {
+    public static List<Message> processLibrary(String libraryPath) throws ProcessingException {
         List<Message> messages = new ArrayList<>();
         try (final DirectoryStream<Path> grupos = Files.newDirectoryStream(Paths.get(libraryPath))) {
             for (Path grupo : grupos) {
                 messages.addAll(MissingFinder.processGrupo(grupo));
             }
         } catch (IOException e) {
+            throw new ProcessingException(e);
         }
         return(messages);
     }

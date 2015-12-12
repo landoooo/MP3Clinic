@@ -5,6 +5,7 @@
  */
 package org.fbarros.mp3clinic;
 
+import org.fbarros.mp3clinic.exceptions.NoTrackNumberException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
