@@ -8,6 +8,9 @@ package org.fbarros.mp3clinic.configuration;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.fbarros.mp3clinic.exceptions.InitializationException;
 import org.fbarros.mp3clinic.messages.MessagesHandler;
 
 /**
@@ -25,7 +28,7 @@ public class ApplicationProperties {
 		prop.load(input);
 
 	} catch (IOException ex) {
-		ex.printStackTrace();
+            Logger.getLogger(ApplicationProperties.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }
    

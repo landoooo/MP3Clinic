@@ -14,7 +14,8 @@ import org.apache.commons.lang.StringUtils;
  */
 public class Id3TagTools {
 
-
+    private Id3TagTools(){}
+    
     public static String getTrackNumber (String trackNumbers) throws NoTrackNumberException {
         if (StringUtils.isEmpty(trackNumbers)) {
             throw new NoTrackNumberException();

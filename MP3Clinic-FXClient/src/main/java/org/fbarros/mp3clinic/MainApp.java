@@ -62,7 +62,6 @@ public class MainApp extends Application {
         selectionBox.getChildren().add(labelSelectedDirectory);
         selectionBox.getChildren().add(startButton);
 
-        //File defaultDirectory = new File(System.getProperty("user.home"));
         final Button btnOpenDirectoryChooser = new Button();
         btnOpenDirectoryChooser.setText(MessagesHandler.getMessage(MessageKeys.LIBRARY_CHOOSER_BUTTON.getKey()));
         btnOpenDirectoryChooser.setOnAction(new EventHandler<ActionEvent>() {

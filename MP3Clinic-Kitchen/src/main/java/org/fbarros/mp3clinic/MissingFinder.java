@@ -38,7 +38,7 @@ public class MissingFinder {
                 messages.addAll(processAlbum(disco));
             }
         } catch (IOException e) {
-            throw new ProcessingException();
+            throw new ProcessingException(e);
         }
         return messages;
     }
@@ -51,7 +51,7 @@ public class MissingFinder {
                 messages.add(new Message("Songs from folder >>" + album.toString() + "<< are not consecutive"));
             }
         } catch (Exception e) {
-            throw new ProcessingException();
+            throw new ProcessingException(e);
         }
         return messages;
     }
@@ -89,7 +89,6 @@ public class MissingFinder {
             ID3v1 tag = mp3file.getId3v1Tag();
             return Integer.parseInt(Id3TagTools.getTrackNumber(tag.getTrack()));
         } else {
-            //logger.info("Song " + mp3file.getFilename() + " doesnt have Id3 tags");
             throw new NoId3TagFoundException();
         }
     }
