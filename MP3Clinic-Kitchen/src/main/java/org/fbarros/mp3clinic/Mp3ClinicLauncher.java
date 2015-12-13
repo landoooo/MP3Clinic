@@ -13,6 +13,8 @@ import org.fbarros.mp3clinic.exceptions.ProcessingException;
  */
 public class Mp3ClinicLauncher {
 
+    private Mp3ClinicLauncher(){}
+    
     public static void main (String[] args){
         try {
             System.out.println(MissingFinder.processLibrary(args[0]));

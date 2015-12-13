@@ -21,6 +21,8 @@ public class ApplicationProperties {
 
     private static Properties prop = initProps();
 
+    private ApplicationProperties(){}
+    
     private static Properties initProps(){ 
         Properties prop = new Properties();
         try (InputStream input = MessagesHandler.class.getClassLoader().getResourceAsStream("bundles/config.properties")){

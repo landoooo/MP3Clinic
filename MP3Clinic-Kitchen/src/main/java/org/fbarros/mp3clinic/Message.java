@@ -11,25 +11,25 @@ package org.fbarros.mp3clinic;
  */
 public class Message {
     
-    private String message;
+    private String content;
     
-    public Message(String message){
-        this.message = message;
+    public Message(String content){
+        this.content = content;
     }
     
     @Override
     public String toString(){
-        return message;
+        return content;
     }
     
     //////////// GETTERS / SETTERS ///////////////////
 
-    public String getMessage() {
-        return message;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage(String content) {
+        this.content = content;
     }
     
 }

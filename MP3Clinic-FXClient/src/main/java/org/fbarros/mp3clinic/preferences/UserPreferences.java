@@ -15,11 +15,9 @@ import org.fbarros.mp3clinic.configuration.PropertyKeys;
  */
 public class UserPreferences {
   
-    private static Locale choosenLocale;
+    private static Locale choosenLocale = new Locale(ApplicationProperties.getValue(PropertyKeys.DEFAULT_LANGUAGE.getKey()));
     
-    {
-        choosenLocale = new Locale(ApplicationProperties.getValue(PropertyKeys.DEFAULT_LANGUAGE.getKey()));
-    }
+    private UserPreferences(){}
     
     ////////////// getters / setters /////////////////////
     

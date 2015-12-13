@@ -18,13 +18,19 @@ public class MessagesHandler {
     
     private static Properties prop;
 
-    private MessagesHandler(){}
-    
     static { 
+	try (InputStream input = MessagesHandler.class.getClassLoader().getResourceAsStream("bundles/messages.properties")){
+
                 prop = new Properties();
+		//prop.load(input);
+
+	} catch (IOException ex) {
+		ex.printStackTrace();
+	}
     }
    
     public static String getMessage(String key){
         return key;
+//return prop.getProperty(key);
     }
 }

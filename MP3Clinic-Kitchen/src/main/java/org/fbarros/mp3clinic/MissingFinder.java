@@ -31,6 +31,8 @@ import org.fbarros.mp3clinic.exceptions.ProcessingException;
  */
 public class MissingFinder {
 
+    private MissingFinder(){}
+    
     public static List<Message> processGrupo(Path grupo) throws ProcessingException {
         List<Message> messages = new ArrayList<>();
         try (DirectoryStream<Path> discos = Files.newDirectoryStream(grupo);) {
@@ -62,23 +64,27 @@ public class MissingFinder {
         Collection<File> files = FileUtils.listFiles(albumPath.toFile(), extensions, false);
         int fileNumber = files.size();
         if (fileNumber > 0) {
-            Boolean[] array = new Boolean[fileNumber];
-
-            try {
-                for (File song : files) {
-                    Mp3File mp3file = new Mp3File(song);
-                    int trackNumber = extractTrackNumber(mp3file);
-                    if (trackNumber > fileNumber) {
-                        return false;
-                    }
-                    array[trackNumber - 1] = true;
-                }
-            } catch (IOException|InvalidDataException|NoId3TagFoundException|NoTrackNumberException|UnsupportedTagException e) {
-                throw new ProcessingException(e);
-            }
-            return Arrays.asList(array).stream().allMatch(e -> e);
+            return checkConsecutiveness(fileNumber, files);
         }
         return true;
+    }
+
+    private static boolean checkConsecutiveness(int fileNumber, Collection<File> files) throws NumberFormatException, ProcessingException {
+        Boolean[] array = new Boolean[fileNumber];
+        
+        try {
+            for (File song : files) {
+                Mp3File mp3file = new Mp3File(song);
+                int trackNumber = extractTrackNumber(mp3file);
+                if (trackNumber > fileNumber) {
+                    return false;
+                }
+                array[trackNumber - 1] = true;
+            }
+        } catch (IOException|InvalidDataException|NoId3TagFoundException|NoTrackNumberException|UnsupportedTagException e) {
+            throw new ProcessingException(e);
+        }
+        return Arrays.asList(array).stream().allMatch(e -> e);
     }
 
     private static int extractTrackNumber(Mp3File mp3file) throws NoId3TagFoundException, NumberFormatException, NoTrackNumberException {

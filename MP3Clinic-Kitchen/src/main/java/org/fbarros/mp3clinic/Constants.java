@@ -10,6 +10,7 @@ package org.fbarros.mp3clinic;
  * @author fernando
  */
 public class Constants {
-    static String TRACK_NUMBERS_SEPARATOR = "/";
+    public static final String TRACK_NUMBERS_SEPARATOR = "/";
     
+    private Constants(){}
 }
