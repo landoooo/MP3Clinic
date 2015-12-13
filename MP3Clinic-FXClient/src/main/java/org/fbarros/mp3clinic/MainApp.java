@@ -24,6 +24,7 @@ import org.fbarros.mp3clinic.MissingFinder;
 import org.fbarros.mp3clinic.messages.MessageKeys;
 import org.fbarros.mp3clinic.messages.MessagesHandler;
 import org.fbarros.mp3clinic.Message;
+
 /**
  *
  * @author fernando
@@ -37,24 +38,27 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
 
         window = primaryStage;
-        
+
         VBox selectionBox = new VBox();
         VBox outputBox = new VBox();
 
         final Label labelSelectedDirectory = new Label();
-        final Label output = new Label();
-        
+
         final Button startButton = new Button();
         startButton.setText(MessagesHandler.getMessage(MessageKeys.START_BUTTON.getKey()));
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 primaryStage.setScene(scene2);
-                List<Message> messages = MissingFinder.processLibrary(labelSelectedDirectory.getText());
-                 for (Message m : messages) {
-                    final Label output = new Label();
-                    output.setText(m.getMessage());
-                    outputBox.getChildren().add(output);
+                try {
+                    List<Message> messages = MissingFinder.processLibrary(labelSelectedDirectory.getText());
+                    for (Message m : messages) {
+                        final Label output = new Label();
+                        output.setText(m.getMessage());
+                        outputBox.getChildren().add(output);
+                    }
+                } catch (Exception e) {
+                    //print error
                 }
             }
         });
@@ -84,7 +88,7 @@ public class MainApp extends Application {
         scene2 = new Scene(outputBox, 200, 300);
 
         Button closeButton = new Button();
-        
+
         //TODO
         closeButton.setText("Clocloclose");
         closeButton.setOnAction(e -> primaryStage.setScene(scene1));
@@ -104,6 +108,3 @@ public class MainApp extends Application {
         launch(args);
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com

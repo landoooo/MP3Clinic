@@ -19,17 +19,16 @@ import org.fbarros.mp3clinic.messages.MessagesHandler;
  */
 public class ApplicationProperties {
 
-    private static Properties prop;
+    private static Properties prop = initProps();
 
-    { 
-	try (InputStream input = MessagesHandler.class.getClassLoader().getResourceAsStream("bundles/config.properties")){
-
-                prop = new Properties();
-		prop.load(input);
-
+    private static Properties initProps(){ 
+        Properties prop = new Properties();
+        try (InputStream input = MessagesHandler.class.getClassLoader().getResourceAsStream("bundles/config.properties")){
+            prop.load(input);
 	} catch (IOException ex) {
             Logger.getLogger(ApplicationProperties.class.getName()).log(Level.SEVERE, null, ex);
 	}
+        return prop;
     }
    
     public static String getValue(String key){

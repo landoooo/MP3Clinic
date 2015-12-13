@@ -74,7 +74,7 @@ public class MissingFinder {
                     array[trackNumber - 1] = true;
                 }
             } catch (IOException|InvalidDataException|NoId3TagFoundException|NoTrackNumberException|UnsupportedTagException e) {
-                throw new ProcessingException();
+                throw new ProcessingException(e);
             }
             return Arrays.asList(array).stream().allMatch(e -> e);
         }
@@ -93,11 +93,15 @@ public class MissingFinder {
         }
     }
 
-    public static List<Message> processLibrary(String libraryPath) throws ProcessingException {
+    public static List<Message> processLibrary(String libraryPath) throws ProcessingException{
         List<Message> messages = new ArrayList<>();
         try (final DirectoryStream<Path> grupos = Files.newDirectoryStream(Paths.get(libraryPath))) {
             for (Path grupo : grupos) {
-                messages.addAll(MissingFinder.processGrupo(grupo));
+                try {
+                    messages.addAll(MissingFinder.processGrupo(grupo));
+                } catch (ProcessingException pe){
+                    messages.add(new Message("Exception processing " + grupo));
+                }
             }
         } catch (IOException e) {
             throw new ProcessingException(e);
