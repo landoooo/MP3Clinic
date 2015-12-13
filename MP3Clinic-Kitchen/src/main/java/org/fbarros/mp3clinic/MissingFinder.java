@@ -112,7 +112,7 @@ public class MissingFinder {
         } catch (IOException e) {
             throw new ProcessingException(e);
         }
-        return(messages);
+        return messages;
     }
 
 }

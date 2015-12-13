@@ -20,16 +20,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 
 import javafx.stage.Stage;
-import org.fbarros.mp3clinic.MissingFinder;
 import org.fbarros.mp3clinic.messages.MessageKeys;
 import org.fbarros.mp3clinic.messages.MessagesHandler;
-import org.fbarros.mp3clinic.Message;
 
 /**
  *
  * @author fernando
  */
-public class MainApp extends Application {
+public class MainApplication extends Application {
 
     Scene scene1, scene2;
     Stage window;

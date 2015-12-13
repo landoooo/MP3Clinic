@@ -20,10 +20,8 @@ public class MessagesHandler {
 
     static { 
 	try (InputStream input = MessagesHandler.class.getClassLoader().getResourceAsStream("bundles/messages.properties")){
-
-                prop = new Properties();
-		//prop.load(input);
-
+            prop = new Properties();
+            //prop.load(input);
 	} catch (IOException ex) {
 		ex.printStackTrace();
 	}
