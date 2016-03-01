@@ -8,7 +8,6 @@
         <version>0.1-SNAPSHOT</version>
     </parent>    
     <artifactId>MP3Clinic-FXClient</artifactId>
-    <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>MP3Clinic-FX</name>

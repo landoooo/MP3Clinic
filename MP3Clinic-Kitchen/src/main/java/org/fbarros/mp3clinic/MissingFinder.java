@@ -50,7 +50,7 @@ public class MissingFinder {
         List<Message> messages = new ArrayList<>();
         try {
             if (!areSongsConsecutive(album)) {
-                messages.add(new Message("Songs from folder >>" + album.toString() + "<< are not consecutive"));
+                //messages.add(new Message("Songs from folder >>" + album.toString() + "<< are not consecutive"));
             }
         } catch (Exception e) {
             throw new ProcessingException(e);
@@ -106,7 +106,7 @@ public class MissingFinder {
                 try {
                     messages.addAll(MissingFinder.processGrupo(grupo));
                 } catch (ProcessingException pe){
-                    messages.add(new Message("Exception processing " + grupo));
+                   // messages.add(new Message("Exception processing " + grupo));
                 }
             }
         } catch (IOException e) {

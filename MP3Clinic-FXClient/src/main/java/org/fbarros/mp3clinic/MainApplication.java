@@ -52,7 +52,7 @@ public class MainApplication extends Application {
                     List<Message> messages = MissingFinder.processLibrary(labelSelectedDirectory.getText());
                     for (Message m : messages) {
                         final Label output = new Label();
-                        output.setText(m.getMessage());
+                        //output.setText(m.getContent());
                         outputBox.getChildren().add(output);
                     }
                 } catch (Exception e) {
