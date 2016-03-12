@@ -8,7 +8,7 @@ import org.fbarros.mp3clinic.data.Track;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
-public interface ITrackBuilder {
+public interface ITrackLoader {
 
 	public Track createTrack(File file) throws UnsupportedTagException, InvalidDataException, IOException;
 }

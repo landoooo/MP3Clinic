@@ -9,7 +9,7 @@ import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
-public class TrackId3v2Builder implements ITrackBuilder {
+public class TrackId3v2Loader implements ITrackLoader {
 
 	public Track createTrack(File file) throws UnsupportedTagException, InvalidDataException, IOException{
 		Mp3File mp3File = new Mp3File(file);

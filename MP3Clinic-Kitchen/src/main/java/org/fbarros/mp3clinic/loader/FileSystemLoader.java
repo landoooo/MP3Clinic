@@ -7,9 +7,8 @@ import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
-import org.fbarros.mp3clinic.Message;
 import org.fbarros.mp3clinic.data.Track;
-import org.fbarros.mp3clinic.data.builder.TrackBuilder;
+import org.fbarros.mp3clinic.data.builder.TrackLoader;
 import org.fbarros.mp3clinic.procesor.Reporter;
 
 public class FileSystemLoader extends Reporter implements ICollectionLoader{
@@ -25,7 +24,7 @@ public class FileSystemLoader extends Reporter implements ICollectionLoader{
 				);
 		for (File file : files){
 			try{
-				Track track  = TrackBuilder.createTrack(file);
+				Track track  = TrackLoader.createTrack(file);
 				result.addTrack(track);
 			} catch (Exception e) {
 				result.addMessage(
