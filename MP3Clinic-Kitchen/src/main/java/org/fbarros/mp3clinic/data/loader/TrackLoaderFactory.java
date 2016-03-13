@@ -1,4 +1,4 @@
-package org.fbarros.mp3clinic.data.builder;
+package org.fbarros.mp3clinic.data.loader;
 
 import org.fbarros.mp3clinic.exceptions.Id3TagVersionNotSupported;
 

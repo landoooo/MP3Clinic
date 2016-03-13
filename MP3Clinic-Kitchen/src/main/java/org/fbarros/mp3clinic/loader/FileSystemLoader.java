@@ -8,7 +8,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.fbarros.mp3clinic.data.Track;
-import org.fbarros.mp3clinic.data.builder.TrackLoader;
+import org.fbarros.mp3clinic.data.loader.TrackLoader;
 import org.fbarros.mp3clinic.procesor.Reporter;
 
 public class FileSystemLoader extends Reporter implements ICollectionLoader{

@@ -3,6 +3,7 @@ package org.fbarros.mp3clinic.data.builder;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.Track;
 
 public class CollectionBuilder {
@@ -17,14 +18,20 @@ public class CollectionBuilder {
 		this.albumBuilder = albumBuilder;
 	}
 	
-	public Collection<Track> buildCollection (int artists, int albums, int songs){
-		Collection<Track> albumTracks = new ArrayList<Track>();
+	public Collection<Album> buildCollection (int artists, int albums, int songs){
+		Collection<Album> collection = new ArrayList<Album>();
 		for (int artistIndex = 1; artistIndex <= artists; artistIndex++ ){
 			for (int albumIndex = 1; albumIndex <= albums; albumIndex++ ){
-				albumTracks.addAll(albumBuilder.buildAlbum(ARTIST_PREFIX + artistIndex, ALBUM_PREFIX + albumIndex, songs));
+				Album album = new Album();
+				String artistStr = ARTIST_PREFIX + artistIndex;
+				String albumStr = ALBUM_PREFIX + albumIndex;
+				album.setTracks(albumBuilder.buildAlbum(artistStr, albumStr, songs));
+				album.setAlbum(albumStr);
+				album.setArtist(artistStr);
+				collection.add(album);
 			}
 		}
-		return albumTracks;
+		return collection;
 	}
 	
 	/////////////////// GETTERS / SETTERS ///////////////////////////////

@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.fbarros.mp3clinic.Message;
-import org.fbarros.mp3clinic.data.Track;
+import org.fbarros.mp3clinic.data.Album;
 
 public interface IProcesor {
 
-	List<Message> process (Collection<Track> collection);
+	List<Message> process (Collection<Album> collection);
 	}

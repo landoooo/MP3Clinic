@@ -1,4 +1,4 @@
-package org.fbarros.mp3clinic.data.builder;
+package org.fbarros.mp3clinic.data.loader;
 
 import java.io.File;
 import java.io.IOException;

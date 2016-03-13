@@ -15,6 +15,11 @@ public abstract class Reporter implements ReportingDataAware{
 		message.setPaths(paths);
 		return message;
 	}
+
+	public Message createMessage(){
+		Message message = new Message(getReportingData());
+		return message;
+	}
 	
 	///////////////// GETTERS / SETTERS ////////////////////////
 	
