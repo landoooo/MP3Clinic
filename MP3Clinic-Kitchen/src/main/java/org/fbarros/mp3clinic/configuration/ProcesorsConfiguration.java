@@ -10,19 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ProcesorsConfiguration {
 
-	@Bean
-	public ReportingData duplicatesFinderReportingData(){
-		ReportingData duplicatesFinderReportingData = new ReportingData();
-		duplicatesFinderReportingData.setCategory(Category.DUPLICATED);
-		duplicatesFinderReportingData.setPriority(Priority.MEDIUM);
-		duplicatesFinderReportingData.setMessageKey("procesor.duplicatesfinder.message");
-		return duplicatesFinderReportingData;
-	}
-
 	@Bean 
 	public DuplicatesFinder duplicatesFinder(){
-		DuplicatesFinder duplicatesFinder = new DuplicatesFinder();
-		duplicatesFinder.setReportingData(duplicatesFinderReportingData());
+		DuplicatesFinder duplicatesFinder = new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"));
 		return duplicatesFinder;
 	}
 

@@ -12,14 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AlbumBuilderTest extends BaseTestCase {
 
 	@Autowired
-	private AlbumBuilder albumBuilder;
+	private TrackCollectionBuilder albumBuilder;
 
 	@Test
 	public void testBuildCompleteAlbum() {
 		int songs = 5;
 		String artistName = "Artist123";
 		String albumName = "Abum 12354";
-		Collection<Track> tracks = albumBuilder.buildAlbum(artistName, albumName, songs);
+		Collection<Track> tracks = albumBuilder.buildAlbumTracks(artistName, albumName, songs);
 		assertThat(tracks).hasSize(5);
 		assertThat(tracks).extracting("artist").containsOnly(artistName);
 		assertThat(tracks).extracting("album").containsOnly(albumName);
@@ -31,7 +31,7 @@ public class AlbumBuilderTest extends BaseTestCase {
 		int songs = 5;
 		String artistName = "Artist123";
 		String albumName = "Abum 12354";
-		Collection<Track> tracks = albumBuilder.buildAlbum(artistName, albumName, songs, Arrays.asList(3, 4));
+		Collection<Track> tracks = albumBuilder.buildAlbumTracks(artistName, albumName, songs, Arrays.asList(3, 4));
 		assertThat(tracks).hasSize(3);
 		assertThat(tracks).extracting("artist").containsOnly(artistName);
 		assertThat(tracks).extracting("album").containsOnly(albumName);
@@ -40,7 +40,7 @@ public class AlbumBuilderTest extends BaseTestCase {
 
 	//////////////////////////////GETTERS / SETTERS /////////////////////////////////
 
-	public void setAlbumBuilder(AlbumBuilder albumBuilder) {
+	public void setAlbumBuilder(TrackCollectionBuilder albumBuilder) {
 		this.albumBuilder = albumBuilder;
 	}
 

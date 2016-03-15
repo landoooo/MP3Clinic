@@ -7,13 +7,19 @@ import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
+import org.fbarros.mp3clinic.Category;
+import org.fbarros.mp3clinic.Priority;
+import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.data.loader.TrackLoader;
 import org.fbarros.mp3clinic.procesor.Reporter;
 
 public class FileSystemLoader extends Reporter implements ICollectionLoader{
-
 	
+	public FileSystemLoader(ReportingData reportingData) {
+		super(reportingData);
+	}
+
 	@Override
 	public LoadingSummary loadCollection(File dir) {
 		LoadingSummary result = new LoadingSummary();
@@ -32,8 +38,6 @@ public class FileSystemLoader extends Reporter implements ICollectionLoader{
 			}	
 		}
 		return result;
-	}
+	}	
 	
-	
-
 }

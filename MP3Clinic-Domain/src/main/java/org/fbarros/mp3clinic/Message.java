@@ -19,6 +19,7 @@ public class Message {
     
     private ReportingData reportingData;
     private LocalDate date;    
+    private String album;
     private List<String> paths;
     
     public Message(ReportingData reportingData){
@@ -26,8 +27,15 @@ public class Message {
     	this.date = LocalDate.now();
     	this.paths = new ArrayList<String>();
     }
+
     
     //////////// GETTERS / SETTERS ///////////////////
+
+	@Override
+	public String toString() {
+		return "Message [reportingData=" + reportingData + ", date=" + date + ", album=" + album + ", paths=" + paths
+				+ "]";
+	}
 
 	public LocalDate getDate() {
 		return date;
@@ -47,6 +55,14 @@ public class Message {
 	
 	public ReportingData getReportingData() {
 		return reportingData;
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
 	}
 	
 }

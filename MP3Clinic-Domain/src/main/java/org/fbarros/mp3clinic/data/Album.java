@@ -66,7 +66,7 @@ public class Album {
 
 	@Override
 	public String toString() {
-		return "Album [album=" + album + ", artist=" + artist + ", year=" + year + "]";
+		return "[" + album + ", by " + artist + "(" + year + ")]";
 	}
 	
 	@Override
