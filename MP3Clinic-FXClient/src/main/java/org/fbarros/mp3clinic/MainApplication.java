@@ -8,20 +8,21 @@ package org.fbarros.mp3clinic;
 
 //~--- non-JDK imports --------------------------------------------------------
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.fbarros.mp3clinic.messages.MessageKeys;
+import org.fbarros.mp3clinic.messages.MessagesHandler;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
-
 import javafx.stage.Stage;
-import org.fbarros.mp3clinic.messages.MessageKeys;
-import org.fbarros.mp3clinic.messages.MessagesHandler;
 
 /**
  *
@@ -49,7 +50,8 @@ public class MainApplication extends Application {
             public void handle(ActionEvent event) {
                 primaryStage.setScene(scene2);
                 try {
-                    List<Message> messages = MissingFinder.processLibrary(labelSelectedDirectory.getText());
+                    List<Message> messages = new ArrayList<Message>(); 
+                    		//MissingFinder.processLibrary(labelSelectedDirectory.getText());
                     for (Message m : messages) {
                         final Label output = new Label();
                         //output.setText(m.getContent());
