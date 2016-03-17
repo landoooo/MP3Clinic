@@ -20,11 +20,5 @@ public class FileSystemLoaderTest extends BaseTest{
 		Collection<Track> collection = fsLoader.loadCollection(new File(ClassLoader.getSystemResource("TestCollection").getFile())).getCollection();
 		assertThat(collection).hasSize(8);
 	}
-
-	//////////////////////// GETTERS / SETTERS //////////////////////////
-	
-	public void setFileSystemLoader(FileSystemLoader fsLoader) {
-		this.fsLoader = fsLoader;
-	}	
 	
 }

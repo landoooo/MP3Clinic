@@ -9,7 +9,17 @@ public class ReportingData {
 	private Category category;
 	private String messageKey;
 
-	public ReportingData() {
+	
+	public ReportingData(Priority priority, Category category, String messageKey) {
+		super();
+		this.priority = priority;
+		this.category = category;
+		this.messageKey = messageKey;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + priority + "|" + category + "|" + messageKey + "]";
 	}
 
 	/////////////////////////////// GETTERS / SETTERS /////////////////////////////

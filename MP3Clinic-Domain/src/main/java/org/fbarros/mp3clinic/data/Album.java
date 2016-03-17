@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class Album {
 
-	private String album;
+	private String albumName;
 	private String artist;
 	private boolean compilation;
 	private int year;
@@ -16,12 +16,12 @@ public class Album {
 		tracks = new ArrayList<Track>();
 	}
 	
-	public String getAlbum() {
-		return album;
+	public String getAlbumName() {
+		return albumName;
 	}
 	
-	public void setAlbum(String album) {
-		this.album = album;
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
 	}
 	
 	public String getArtist() {
@@ -66,14 +66,14 @@ public class Album {
 
 	@Override
 	public String toString() {
-		return "Album [album=" + album + ", artist=" + artist + ", year=" + year + "]";
+		return "[" + albumName + ", by " + artist + "(" + year + ")]";
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((album == null) ? 0 : album.hashCode());
+		result = prime * result + ((albumName == null) ? 0 : albumName.hashCode());
 		result = prime * result + ((artist == null) ? 0 : artist.hashCode());
 		return result;
 	}
@@ -87,10 +87,10 @@ public class Album {
 		if (getClass() != obj.getClass())
 			return false;
 		Album other = (Album) obj;
-		if (album == null) {
-			if (other.album != null)
+		if (albumName == null) {
+			if (other.albumName != null)
 				return false;
-		} else if (!album.equals(other.album))
+		} else if (!albumName.equals(other.albumName))
 			return false;
 		if (artist == null) {
 			if (other.artist != null)
