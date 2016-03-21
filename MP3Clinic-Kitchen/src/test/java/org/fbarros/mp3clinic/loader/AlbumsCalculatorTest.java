@@ -58,7 +58,7 @@ public class AlbumsCalculatorTest extends BaseTest {
 		
 		Album expectedAlbum = make(a(Album, with(albumName, ALBUM_NAME), with(artist, ARTIST_NAME), with(numberOfTracks, NUMBER_OF_TRACKS)));
 		
-		AlbumsCalculationSummary summary = albumsCalculatorSpy.calculateAlbum(tracks);
+		ProcessingReport summary = albumsCalculatorSpy.calculateAlbum(tracks);
 		SoftAssertions softly = new SoftAssertions();
 		softly.assertThat(summary.getMessages()).isEmpty();
 		softly.assertThat(summary.getCollection()).containsExactly(expectedAlbum);
@@ -73,7 +73,7 @@ public class AlbumsCalculatorTest extends BaseTest {
 		AlbumsCalculator albumsCalculatorSpy = Mockito.spy(albumsCalculator);
 		Mockito.when(albumsCalculatorSpy.extractNumberOfTracks(tracks)).thenThrow(NumberOfTracksCalculationException.class);
 		
-		AlbumsCalculationSummary summary = albumsCalculatorSpy.calculateAlbum(tracks);
+		ProcessingReport summary = albumsCalculatorSpy.calculateAlbum(tracks);
 		SoftAssertions softly = new SoftAssertions();
 		softly.assertThat(summary.getCollection()).isEmpty();
 		softly.assertThat(summary.getMessages()).hasSize(1);

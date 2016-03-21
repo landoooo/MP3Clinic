@@ -6,6 +6,6 @@ import org.fbarros.mp3clinic.data.Track;
 
 public interface IAlbumsCalculator {
 
-	AlbumsCalculationSummary calculateAlbum(Collection<Track> tracks); 
+	ProcessingReport calculateAlbum(Collection<Track> tracks); 
 
 }

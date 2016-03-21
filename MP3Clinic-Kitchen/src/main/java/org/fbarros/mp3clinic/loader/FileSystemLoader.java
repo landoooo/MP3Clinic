@@ -21,8 +21,8 @@ public class FileSystemLoader extends Reporter implements ICollectionLoader{
 	}
 
 	@Override
-	public LoadingSummary loadCollection(File dir) {
-		LoadingSummary result = new LoadingSummary();
+	public ProcessingReport<Track> loadCollection(File dir) {
+		ProcessingReport<Track> result = new ProcessingReport<Track>();
 		Collection<File> files = FileUtils.listFiles(
 				dir, 
 				new RegexFileFilter("^(.+?)\\.mp3"), 
@@ -31,7 +31,7 @@ public class FileSystemLoader extends Reporter implements ICollectionLoader{
 		for (File file : files){
 			try{
 				Track track  = TrackLoader.createTrack(file);
-				result.addTrack(track);
+				result.addElement(track);
 			} catch (Exception e) {
 				result.addMessage(
 						createMessage(Arrays.asList(file.getPath())));

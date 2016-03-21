@@ -16,8 +16,8 @@ public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
 	}
 	
 	@Override
-	public AlbumsCalculationSummary calculateAlbum(Collection<Track> tracks) {
-		AlbumsCalculationSummary result = new AlbumsCalculationSummary();
+	public ProcessingReport calculateAlbum(Collection<Track> tracks) {
+		ProcessingReport result = new ProcessingReport();
 		Album album = new Album();
 		//TODO: verify all the artists and albums from a folder are the same
 		// and throw DifferentArtists and DifferentAlbum exceptions
@@ -28,7 +28,7 @@ public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
 			album.setArtist(tracksArr[0].getArtist());
 			album.setAlbumName(tracksArr[0].getAlbum());
 			album.setTracks(tracks);
-			result.addAlbum(album);
+			result.addElement(album);
 		} catch (NumberOfTracksCalculationException e) {
 			result.addMessage(createMessage(album));
 		}

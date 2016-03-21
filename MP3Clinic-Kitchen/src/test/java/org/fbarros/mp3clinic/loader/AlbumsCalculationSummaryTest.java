@@ -33,8 +33,8 @@ public class AlbumsCalculationSummaryTest extends BaseTest {
 	
 	@Test
 	public void mergeEmptySummaryTest(){
-		AlbumsCalculationSummary summary1 = new AlbumsCalculationSummary();
-		AlbumsCalculationSummary summary2 = new AlbumsCalculationSummary();
+		ProcessingReport summary1 = new ProcessingReport();
+		ProcessingReport summary2 = new ProcessingReport();
 		
 		summary1.merge(summary2);
 		assertThat(summary1.getCollection()).isEmpty();

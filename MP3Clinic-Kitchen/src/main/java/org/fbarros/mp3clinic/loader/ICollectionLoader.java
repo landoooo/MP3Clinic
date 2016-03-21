@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import org.fbarros.mp3clinic.data.Track;
 
-public interface ICollectionLoader {
+public interface ICollectionLoader<T> {
 
-	LoadingSummary loadCollection (File dir);
+	ProcessingReport<T> loadCollection (File dir);
 }
