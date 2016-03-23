@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="315.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fbarros.mp3clinic.view.controller.LibraryManagerController">
+   <children>
+      <TableView layoutX="-1.0" layoutY="-1.0" prefHeight="239.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Date" />
+          <TableColumn prefWidth="110.0" text="Name" />
+            <TableColumn prefWidth="181.0" text="Path" />
+        </columns>
+      </TableView>
+      <HBox layoutX="74.0" layoutY="261.0" spacing="10.0">
+         <children>
+            <Button layoutX="232.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Load Selected" />
+            <Button mnemonicParsing="false" onAction="#handleNewButton" text="New..." />
+            <Button layoutX="291.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
