@@ -9,6 +9,7 @@ import org.fbarros.mp3clinic.data.LibraryLoad;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +27,8 @@ public class LibraryManagerController {
 	private TableColumn<LibraryLoad, String> collectionPathColumn;
 	@FXML
 	private LibraryLoad currentLibraryLoad;
+	@FXML
+	private Button closeButton;
 
 	// Reference to the main application.
 	private MainApp mainApp;
@@ -82,7 +85,8 @@ public class LibraryManagerController {
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
 			if (mainApp.getCurrentLibraryLoad() != null){
-				dialogStage.close();
+				Stage currentStage = (Stage) closeButton.getScene().getWindow();
+				currentStage.close();
 			}
 
 		} catch (IOException e) {

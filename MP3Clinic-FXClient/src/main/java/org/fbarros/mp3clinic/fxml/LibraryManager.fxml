@@ -19,7 +19,7 @@
          <children>
             <Button layoutX="232.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Load Selected" />
             <Button mnemonicParsing="false" onAction="#handleNewButton" text="New..." />
-            <Button layoutX="291.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel" />
+            <Button fx:id="closeButton" layoutX="291.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel" />
          </children>
       </HBox>
    </children>
