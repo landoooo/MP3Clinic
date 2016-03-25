@@ -11,21 +11,27 @@ import java.util.List;
 
 import org.fbarros.mp3clinic.data.ReportingData;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author fernando
  */
 public class Message {
     
-    private ReportingData reportingData;
-    private LocalDate date;    
-    private String album;
-    private List<String> paths;
+    private ObjectProperty<ReportingData> reportingDataProperty;
+    private ObjectProperty<LocalDate> dateProperty;    
+    private StringProperty albumProperty;
+    private ObjectProperty<List<String>> pathsProperty;
     
     public Message(ReportingData reportingData){
-    	this.reportingData = reportingData;
-    	this.date = LocalDate.now();
-    	this.paths = new ArrayList<String>();
+    	this.reportingDataProperty = new SimpleObjectProperty<ReportingData>(reportingData);
+    	this.dateProperty= new SimpleObjectProperty<LocalDate>(LocalDate.now());
+    	this.pathsProperty= new SimpleObjectProperty<List<String>>(new ArrayList<String>());
+    	this.albumProperty = new SimpleStringProperty();
     }
 
     
@@ -33,36 +39,35 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [reportingData=" + reportingData + ", date=" + date + ", album=" + album + ", paths=" + paths
-				+ "]";
+		return "Message [" + reportingDataProperty + " " + dateProperty + ": " + albumProperty + " - " + pathsProperty + "]";
 	}
 
 	public LocalDate getDate() {
-		return date;
+		return dateProperty.get();
 	}
 
 	public List<String> getPaths() {
-		return paths;
+		return pathsProperty.get();
 	}
 
 	public void setPaths(List<String> paths) {
-		this.paths = paths;
+		this.pathsProperty.set(paths);
 	}
 
 	public void addPath(String path){
-		this.paths.add(path);
+		this.pathsProperty.get().add(path);
 	}
 	
 	public ReportingData getReportingData() {
-		return reportingData;
+		return reportingDataProperty.get();
 	}
 
 	public String getAlbum() {
-		return album;
+		return albumProperty.get();
 	}
 
 	public void setAlbum(String album) {
-		this.album = album;
+		this.albumProperty.set(album);
 	}
 	
 }

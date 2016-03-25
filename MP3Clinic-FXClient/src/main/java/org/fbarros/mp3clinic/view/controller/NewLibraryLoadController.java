@@ -25,9 +25,8 @@ public class NewLibraryLoadController {
 	private TextField nameField;
 
 	private Stage dialogStage;
-	private MainApp mainApp;
 	private String libraryPath;
-
+	private LibraryLoad libraryLoad;
 
 	/**
 	 * The constructor.
@@ -44,12 +43,12 @@ public class NewLibraryLoadController {
 	@FXML
 	private void handleOkButton() {
 		if (validateFields()){
-			LibraryLoad libraryLoad = new LibraryLoad();
-			libraryLoad.setDate(LocalDate.now());
-			libraryLoad.setName(nameField.getText());
-			libraryLoad.setLibraryPath(libraryPath);
+			LibraryLoad newLibraryLoad = new LibraryLoad();
+			newLibraryLoad.setDate(LocalDate.now());
+			newLibraryLoad.setName(nameField.getText());
+			newLibraryLoad.setLibraryPath(libraryPath);
 			
-			mainApp.setCurrentLibraryLoad(libraryLoad);
+			this.libraryLoad = newLibraryLoad;
 			dialogStage.close();
 		}
 	}
@@ -97,8 +96,9 @@ public class NewLibraryLoadController {
 		this.dialogStage = dialogStage;
 	}
 
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;		
+	public LibraryLoad getLibraryLoad() {
+		return libraryLoad;
 	}
+
 
 }

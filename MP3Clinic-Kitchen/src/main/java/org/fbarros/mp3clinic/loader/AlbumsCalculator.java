@@ -1,7 +1,6 @@
 package org.fbarros.mp3clinic.loader;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.ReportingData;
@@ -16,8 +15,7 @@ public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
 	}
 	
 	@Override
-	public ProcessingReport calculateAlbum(Collection<Track> tracks) {
-		ProcessingReport result = new ProcessingReport();
+	public ProcessingReport<Album> calculateAlbum(final Collection<Track> tracks, ProcessingReport<Album> result) {
 		Album album = new Album();
 		//TODO: verify all the artists and albums from a folder are the same
 		// and throw DifferentArtists and DifferentAlbum exceptions
@@ -35,7 +33,7 @@ public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
 		return result;
 	}
 	
-	public int extractNumberOfTracks(Collection<Track> tracks) throws NumberOfTracksCalculationException{
+	public int extractNumberOfTracks(final Collection<Track> tracks) throws NumberOfTracksCalculationException{
 		int numberOfTracks = tracks.size();
 		Track[] tracksArr = new Track[tracks.size()];
 		tracks.toArray(tracksArr);

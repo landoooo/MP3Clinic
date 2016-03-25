@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fbarros.mp3clinic.view.controller.LibraryOverviewController">
    <children>
-      <SplitPane dividerPositions="0.22818791946308725" layoutX="172.0" layoutY="21.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.22483221476510068" layoutX="172.0" layoutY="21.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
@@ -24,13 +24,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView layoutX="167.0" layoutY="26.0" prefHeight="226.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="messagesTable" layoutX="167.0" layoutY="26.0" prefHeight="226.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Date" />
-                      <TableColumn prefWidth="75.0" text="Category" />
-                        <TableColumn prefWidth="75.0" text="Priority" />
-                        <TableColumn prefWidth="75.0" text="Album" />
-                        <TableColumn prefWidth="75.0" text="Paths" />
+                      <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+                      <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
+                        <TableColumn fx:id="priorityColumn" prefWidth="75.0" text="Priority" />
+                        <TableColumn fx:id="albumColumn" prefWidth="75.0" text="Album" />
                     </columns>
                   </TableView>
                </children>

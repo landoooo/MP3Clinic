@@ -1,9 +1,11 @@
 package org.fbarros.mp3clinic;
 
 import java.io.IOException;
+import java.util.Collection;
 
+import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.LibraryLoad;
-import org.fbarros.mp3clinic.view.controller.LibraryManagerController;
+import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.view.controller.LibraryOverviewController;
 import org.fbarros.mp3clinic.view.controller.RootLayoutController;
 
@@ -14,7 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -30,7 +31,8 @@ public class MainApp extends Application {
     private ObservableList<Message> messages = FXCollections.observableArrayList();
 
     //Selected libraryLoad
-    private LibraryLoad currentLibraryLoad = null;
+    private LibraryLoad currentLibraryLoad;
+	private Collection<Album> albums;
     
     /**
      * Constructor
@@ -125,4 +127,14 @@ public class MainApp extends Application {
 	public static void main(String[] args) {
         launch(args);
     }
+
+	public void setAlbums(Collection<Album> collection) {
+		this.albums = collection;
+		
+	}
+
+	public void setMessages(Collection<Message> messages) {
+		this.messages.setAll(messages);
+		
+	}
 }

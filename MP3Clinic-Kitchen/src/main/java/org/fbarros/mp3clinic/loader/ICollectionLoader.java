@@ -1,11 +1,10 @@
 package org.fbarros.mp3clinic.loader;
 
 import java.io.File;
-import java.util.Collection;
 
 import org.fbarros.mp3clinic.data.Track;
 
-public interface ICollectionLoader<T> {
+public interface ICollectionLoader {
 
-	ProcessingReport<T> loadCollection (File dir);
+	ProcessingReport<Track> loadCollection (File dir);
 }

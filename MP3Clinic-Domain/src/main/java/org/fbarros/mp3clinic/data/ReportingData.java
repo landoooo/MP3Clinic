@@ -2,33 +2,39 @@ package org.fbarros.mp3clinic.data;
 
 import org.fbarros.mp3clinic.Category;
 import org.fbarros.mp3clinic.Priority;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class ReportingData {
 	
-	private Priority priority;
-	private Category category;
-	private String messageKey;
+	private ObjectProperty<Priority> priorityProperty;
+	private ObjectProperty<Category> categoryProperty;
+	private StringProperty messageKeyProperty;
 
 	
 	public ReportingData(Priority priority, Category category, String messageKey) {
 		super();
-		this.priority = priority;
-		this.category = category;
-		this.messageKey = messageKey;
+		this.priorityProperty = new SimpleObjectProperty<Priority>(priority);
+		this.categoryProperty = new SimpleObjectProperty<Category>(category);
+		this.messageKeyProperty = new SimpleStringProperty(messageKey);
 	}
 
 	@Override
 	public String toString() {
-		return "[" + priority + "|" + category + "|" + messageKey + "]";
+		return "[" + priorityProperty + "|" + categoryProperty + "|" + messageKeyProperty + "]";
 	}
 		
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((messageKey == null) ? 0 : messageKey.hashCode());
-		result = prime * result + ((priority == null) ? 0 : priority.hashCode());
+		result = prime * result + ((categoryProperty == null) ? 0 : categoryProperty.hashCode());
+		result = prime * result + ((messageKeyProperty == null) ? 0 : messageKeyProperty.hashCode());
+		result = prime * result + ((priorityProperty == null) ? 0 : priorityProperty.hashCode());
 		return result;
 	}
 
@@ -41,14 +47,14 @@ public class ReportingData {
 		if (getClass() != obj.getClass())
 			return false;
 		ReportingData other = (ReportingData) obj;
-		if (category != other.category)
+		if (categoryProperty != other.categoryProperty)
 			return false;
-		if (messageKey == null) {
-			if (other.messageKey != null)
+		if (messageKeyProperty == null) {
+			if (other.messageKeyProperty != null)
 				return false;
-		} else if (!messageKey.equals(other.messageKey))
+		} else if (!messageKeyProperty.equals(other.messageKeyProperty))
 			return false;
-		if (priority != other.priority)
+		if (priorityProperty != other.priorityProperty)
 			return false;
 		return true;
 	}
@@ -56,27 +62,27 @@ public class ReportingData {
 	///////////////////// GETTERS / SETTERS ///////////////////////////
 	
 	public Priority getPriority() {
-		return priority;
+		return priorityProperty.get();
 	}
 
 	public void setPriority(Priority priority) {
-		this.priority = priority;
+		this.priorityProperty.set(priority);
 	}
 
 	public Category getCategory() {
-		return category;
+		return categoryProperty.get();
 	}
 
 	public void setCategory(Category category) {
-		this.category = category;
+		this.categoryProperty.set(category);
 	}
 
 	public String getMessageKey() {
-		return messageKey;
+		return messageKeyProperty.get();
 	}
 
 	public void setMessageKey(String messageKey) {
-		this.messageKey = messageKey;
+		this.messageKeyProperty.set(messageKey);
 	}
 
 

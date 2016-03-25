@@ -1,11 +1,24 @@
 package org.fbarros.mp3clinic.view.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 import org.fbarros.mp3clinic.MainApp;
+import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.LibraryLoad;
+import org.fbarros.mp3clinic.data.Track;
+import org.fbarros.mp3clinic.loader.IAlbumGrouper;
+import org.fbarros.mp3clinic.loader.IAlbumsCalculator;
+import org.fbarros.mp3clinic.loader.ICollectionLoader;
+import org.fbarros.mp3clinic.loader.ProcessingReport;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,6 +46,15 @@ public class LibraryManagerController {
 	// Reference to the main application.
 	private MainApp mainApp;
 	private Stage dialogStage;
+
+	@Autowired
+	private ICollectionLoader collectionLoader;
+
+	@Autowired
+	private IAlbumGrouper albumGrouper;
+
+	@Autowired
+	private IAlbumsCalculator albumCalculator;
 
 	/**
 	 * The constructor.
@@ -80,13 +102,21 @@ public class LibraryManagerController {
 			// Set the person into the controller.
 			NewLibraryLoadController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.setMainApp(mainApp);
 
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
-			if (mainApp.getCurrentLibraryLoad() != null){
+			if (controller.getLibraryLoad() != null){
 				Stage currentStage = (Stage) closeButton.getScene().getWindow();
 				currentStage.close();
+				Task<ProcessingReport<Album>> collectionLoaderTask = createCollectionLoaderTask(new File(controller.getLibraryLoad().getLibraryPath()));
+				collectionLoaderTask.addEventHandler(WorkerStateEvent.WORKER_STATE_SUCCEEDED,  new EventHandler<WorkerStateEvent>() {
+				    @Override
+				    public void handle(WorkerStateEvent t) {
+				    	mainApp.setMessages(collectionLoaderTask.getValue().getMessages());
+				    	mainApp.setAlbums(collectionLoaderTask.getValue().getCollection());
+				    }
+				});
+				new Thread(collectionLoaderTask).start();
 			}
 
 		} catch (IOException e) {
@@ -99,6 +129,21 @@ public class LibraryManagerController {
 		dialogStage.close();
 	}
 
+	private Task<ProcessingReport<Album>> createCollectionLoaderTask(File folder) {
+		return new Task<ProcessingReport<Album>>() {
+			@Override
+			protected ProcessingReport<Album> call() throws Exception {
+				ProcessingReport<Track> report = collectionLoader.loadCollection(folder);
+				Collection<List<Track>> groupedAlbums = albumGrouper.albumGrouper(report.getCollection());
+				ProcessingReport<Album> result = new ProcessingReport<>();
+				for(List<Track> tracks : groupedAlbums){
+					albumCalculator.calculateAlbum(tracks, result);
+				}
+				return result;
+			}
+		};
+	}
+
 	public void setCurrentLibraryLoad(LibraryLoad currentLibraryLoad) {
 		this.currentLibraryLoad = currentLibraryLoad;
 
@@ -109,5 +154,5 @@ public class LibraryManagerController {
 
 	}
 
-	
+
 }

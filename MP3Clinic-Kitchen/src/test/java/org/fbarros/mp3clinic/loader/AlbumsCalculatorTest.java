@@ -11,7 +11,6 @@ import static org.fbarros.mp3clinic.data.builder.AlbumBuilder.artist;
 import static org.fbarros.mp3clinic.data.builder.AlbumBuilder.numberOfTracks;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
 import org.fbarros.mp3clinic.data.Album;
@@ -27,14 +26,14 @@ public class AlbumsCalculatorTest extends BaseTest {
 
 	@Autowired
 	private AlbumsCalculator albumsCalculator;
-	
+
 	@Autowired
 	private TrackCollectionBuilder trackCollectionBuilder;
-	
+
 	private static final int NUMBER_OF_TRACKS = 5;
 	private static final String ARTIST_NAME = "ArtistName";
 	private static final String ALBUM_NAME = "AlbumName";
-	
+
 	@Test
 	public void extractNumberOfTracksExceptionTest() throws NumberOfTracksCalculationException {
 		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks("1", "1", 1);
@@ -48,21 +47,22 @@ public class AlbumsCalculatorTest extends BaseTest {
 		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks("1", "1", NUMBER_OF_TRACKS);
 		assertThat(albumsCalculator.extractNumberOfTracks(tracks)).isEqualTo(NUMBER_OF_TRACKS);
 	}
-	
+
 	@Test
 	public void calculateAlbumsTest() throws NumberOfTracksCalculationException {
 
 		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks(ARTIST_NAME, ALBUM_NAME, NUMBER_OF_TRACKS);
 		AlbumsCalculator albumsCalculatorSpy = Mockito.spy(albumsCalculator);
 		Mockito.when(albumsCalculatorSpy.extractNumberOfTracks(tracks)).thenReturn(5);
-		
+
 		Album expectedAlbum = make(a(Album, with(albumName, ALBUM_NAME), with(artist, ARTIST_NAME), with(numberOfTracks, NUMBER_OF_TRACKS)));
-		
-		ProcessingReport summary = albumsCalculatorSpy.calculateAlbum(tracks);
+
+		ProcessingReport<Album> report = new ProcessingReport<>();
+		albumsCalculatorSpy.calculateAlbum(tracks, report);
 		SoftAssertions softly = new SoftAssertions();
-		softly.assertThat(summary.getMessages()).isEmpty();
-		softly.assertThat(summary.getCollection()).containsExactly(expectedAlbum);
-		softly.assertThat(summary.getCollection()).extracting("tracks").containsOnly(tracks);
+		softly.assertThat(report.getMessages()).isEmpty();
+		softly.assertThat(report.getCollection()).containsExactly(expectedAlbum);
+		softly.assertThat(report.getCollection()).extracting("tracks").containsOnly(tracks);
 		softly.assertAll();
 	}
 
@@ -72,8 +72,9 @@ public class AlbumsCalculatorTest extends BaseTest {
 		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks(ARTIST_NAME, ALBUM_NAME, NUMBER_OF_TRACKS);
 		AlbumsCalculator albumsCalculatorSpy = Mockito.spy(albumsCalculator);
 		Mockito.when(albumsCalculatorSpy.extractNumberOfTracks(tracks)).thenThrow(NumberOfTracksCalculationException.class);
-		
-		ProcessingReport summary = albumsCalculatorSpy.calculateAlbum(tracks);
+
+		ProcessingReport<Album> summary = new ProcessingReport<Album>();
+		albumsCalculatorSpy.calculateAlbum(tracks, summary);
 		SoftAssertions softly = new SoftAssertions();
 		softly.assertThat(summary.getCollection()).isEmpty();
 		softly.assertThat(summary.getMessages()).hasSize(1);
