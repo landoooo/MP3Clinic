@@ -9,13 +9,11 @@ import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
-public class TrackId3v2Loader implements ITrackLoader {
+public class TrackId3v2Loader extends TrackId3v1Loader implements ITrackLoader {
 
 	public Track createTrack(File file) throws UnsupportedTagException, InvalidDataException, IOException{
+		Track track = super.createTrack(file);
 		Mp3File mp3File = new Mp3File(file);
-		Track track = new Track();
-		track.setPath(file.getPath());
-		track.setName(mp3File.getId3v2Tag().getTitle());
 		return track;
 	}
 }

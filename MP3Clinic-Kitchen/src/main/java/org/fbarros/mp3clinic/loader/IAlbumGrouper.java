@@ -7,6 +7,6 @@ import org.fbarros.mp3clinic.data.Track;
 
 public interface IAlbumGrouper {
 	
-	public Collection<List<Track>> albumGrouper(Collection<Track> collection);
+	public Collection<List<Track>> group(Collection<Track> collection);
 
 }

@@ -10,7 +10,7 @@ import org.fbarros.mp3clinic.data.Track;
 public class AlbumGrouper implements IAlbumGrouper {
 
 	@Override
-	public Collection<List<Track>> albumGrouper(Collection<Track> collection) {
+	public Collection<List<Track>> group(Collection<Track> collection) {
 		Map<String, List<Track>> simpleAlbums = 
 				collection.stream().collect(Collectors.groupingBy(t -> t.getArtist() + t.getAlbum()));
 		return simpleAlbums.values();

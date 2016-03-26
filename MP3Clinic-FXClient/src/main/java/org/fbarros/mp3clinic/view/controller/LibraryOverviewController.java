@@ -10,6 +10,7 @@ import org.fbarros.mp3clinic.MainApp;
 import org.fbarros.mp3clinic.Message;
 import org.fbarros.mp3clinic.Priority;
 import org.fbarros.mp3clinic.data.Album;
+import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.procesor.DuplicatesFinder;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -53,8 +54,7 @@ public class LibraryOverviewController {
 	private Label selectedLibraryLabel;
 
 	//TODO: new class holding all the procesors and configuration of which ones should be executed 
-	@Autowired 
-	private DuplicatesFinder duplicatesFinder;
+	private DuplicatesFinder duplicatesFinder = new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"));
 	
 	/**
 	 * The constructor.

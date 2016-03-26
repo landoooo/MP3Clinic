@@ -6,10 +6,16 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
+import org.fbarros.mp3clinic.Category;
 import org.fbarros.mp3clinic.MainApp;
+import org.fbarros.mp3clinic.Priority;
 import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.LibraryLoad;
+import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
+import org.fbarros.mp3clinic.loader.AlbumGrouper;
+import org.fbarros.mp3clinic.loader.AlbumsCalculator;
+import org.fbarros.mp3clinic.loader.FileSystemLoader;
 import org.fbarros.mp3clinic.loader.IAlbumGrouper;
 import org.fbarros.mp3clinic.loader.IAlbumsCalculator;
 import org.fbarros.mp3clinic.loader.ICollectionLoader;
@@ -47,14 +53,11 @@ public class LibraryManagerController {
 	private MainApp mainApp;
 	private Stage dialogStage;
 
-	@Autowired
-	private ICollectionLoader collectionLoader;
+	private ICollectionLoader collectionLoader = new FileSystemLoader(new ReportingData(Priority.HIGH, Category.LOADING, "error.message.loading_data"));
 
-	@Autowired
-	private IAlbumGrouper albumGrouper;
+	private IAlbumGrouper albumGrouper = new AlbumGrouper();;
 
-	@Autowired
-	private IAlbumsCalculator albumCalculator;
+	private IAlbumsCalculator albumCalculator = new AlbumsCalculator(new ReportingData(Priority.HIGH, Category.WRONG_INFORMATION, "error.message.calculating_album"));;
 	
 	private LibraryOverviewController libraryOverviewController;
 
@@ -137,7 +140,7 @@ public class LibraryManagerController {
 			@Override
 			protected ProcessingReport<Album> call() throws Exception {
 				ProcessingReport<Track> report = collectionLoader.loadCollection(folder);
-				Collection<List<Track>> groupedAlbums = albumGrouper.albumGrouper(report.getCollection());
+				Collection<List<Track>> groupedAlbums = albumGrouper.group(report.getCollection());
 				ProcessingReport<Album> result = new ProcessingReport<>();
 				for(List<Track> tracks : groupedAlbums){
 					albumCalculator.calculateAlbum(tracks, result);

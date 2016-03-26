@@ -10,10 +10,10 @@ public class TrackLoaderFactory {
 	private TrackId3v2Loader id3v2Builder = new TrackId3v2Loader();
 	
 	public ITrackLoader builder(Mp3File file) throws Id3TagVersionNotSupported{
-		if (file.hasId3v1Tag()){
-			return id3v1Builder;
-		} else if ( file.hasId3v2Tag()){
+		if (file.hasId3v2Tag()){
 			return id3v2Builder;
+		} else if ( file.hasId3v1Tag()){
+			return id3v1Builder;
 		} else {
 			throw new Id3TagVersionNotSupported();
 		}

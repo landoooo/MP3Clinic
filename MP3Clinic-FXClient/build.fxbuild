@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="/Users/el_fer/git/MP3Clinic/MP3Clinic-FXClient/target/dependency-maven-plugin-markers">
+  <deploy packagingFormat="exe">
+    <application name="JavaFXTest" mainclass="org.fbarros.mp3clinic.MainApp" version="0.1" toolkit="fx"/>
+    <info title="MP3Clinic" vendor="org.fbarros"/>
+  </deploy>
+  <signjar/>
+</anttasks:AntTask>

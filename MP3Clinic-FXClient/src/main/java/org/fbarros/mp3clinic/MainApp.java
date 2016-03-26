@@ -4,16 +4,11 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-import org.fbarros.mp3clinic.configuration.GeneralConfiguration;
-import org.fbarros.mp3clinic.configuration.LoadersConfiguration;
-import org.fbarros.mp3clinic.configuration.ProcesorsConfiguration;
 import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.LibraryLoad;
+import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.view.controller.LibraryOverviewController;
 import org.fbarros.mp3clinic.view.controller.RootLayoutController;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -24,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-@Component
 public class MainApp extends Application {
 
     private Stage primaryStage;
@@ -45,19 +39,17 @@ public class MainApp extends Application {
      * Constructor
      */
     public MainApp() {
+    	//TODO: initialization, preferences, libraryLoads, load last libraryLoad...
     }
     
     @Override
     public void start(Stage primaryStage) {
-    	ApplicationContext context = 
-    			new AnnotationConfigApplicationContext(GeneralConfiguration.class, LoadersConfiguration.class, ProcesorsConfiguration.class);
-    	MainApp mainApp = context.getBean(MainApp.class);
-    	mainApp.primaryStage = primaryStage;
-        mainApp.primaryStage.setTitle("MP3Clinic");
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("MP3Clinic");
 
-        mainApp.initRootLayout();
+        initRootLayout();
 
-        mainApp.showLibraryOverview();
+        showLibraryOverview();
     }
 
     /**

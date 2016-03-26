@@ -16,6 +16,9 @@ public class TrackId3v1Loader implements ITrackLoader {
 		Track track = new Track();
 		track.setPath(file.getPath());
 		track.setName(mp3File.getId3v1Tag().getTitle());
+		track.setArtist(mp3File.getId3v1Tag().getArtist());
+		track.setAlbum(mp3File.getId3v1Tag().getAlbum());
+		track.setNumber(Integer.parseInt(mp3File.getId3v1Tag().getTrack()));
 		return track;
 	}
 }

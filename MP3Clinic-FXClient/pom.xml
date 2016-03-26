@@ -24,14 +24,14 @@
 	</organization>
 
 	<dependencies>
-		
+
 		<dependency>
 			<groupId>org.fbarros</groupId>
 			<artifactId>MP3Clinic-Kitchen</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
-		
-				<dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
@@ -79,7 +79,7 @@
 			<version>0.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -179,6 +179,15 @@
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
