@@ -12,8 +12,7 @@ public class ProcesorsConfiguration {
 
 	@Bean 
 	public DuplicatesFinder duplicatesFinder(){
-		DuplicatesFinder duplicatesFinder = new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"));
-		return duplicatesFinder;
+		return new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"));
 	}
 
 

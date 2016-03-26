@@ -55,6 +55,8 @@ public class LibraryManagerController {
 
 	@Autowired
 	private IAlbumsCalculator albumCalculator;
+	
+	private LibraryOverviewController libraryOverviewController;
 
 	/**
 	 * The constructor.
@@ -106,6 +108,7 @@ public class LibraryManagerController {
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
 			if (controller.getLibraryLoad() != null){
+				libraryOverviewController.setSelectedLibraryLabelText(controller.getLibraryLoad().toString());
 				Stage currentStage = (Stage) closeButton.getScene().getWindow();
 				currentStage.close();
 				Task<ProcessingReport<Album>> collectionLoaderTask = createCollectionLoaderTask(new File(controller.getLibraryLoad().getLibraryPath()));
@@ -152,6 +155,11 @@ public class LibraryManagerController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 
+	}
+
+	public void setLibraryOverviewController(LibraryOverviewController libraryOverviewController) {
+		this.libraryOverviewController = libraryOverviewController;
+		
 	}
 
 

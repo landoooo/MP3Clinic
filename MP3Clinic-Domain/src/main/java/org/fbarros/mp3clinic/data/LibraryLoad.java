@@ -50,5 +50,7 @@ public class LibraryLoad {
 		this.libraryPath = libraryPath;
 	}
 	
-	
+	public String toString(){
+		return name + " (" + date + ")"; 
+	}
 }
