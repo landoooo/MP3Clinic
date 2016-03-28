@@ -26,12 +26,14 @@ public class Message {
     private ObjectProperty<LocalDate> dateProperty;    
     private StringProperty albumProperty;
     private ObjectProperty<List<String>> pathsProperty;
+    private StringProperty descriptionProperty;
     
     public Message(ReportingData reportingData){
     	this.reportingDataProperty = new SimpleObjectProperty<ReportingData>(reportingData);
     	this.dateProperty= new SimpleObjectProperty<LocalDate>(LocalDate.now());
     	this.pathsProperty= new SimpleObjectProperty<List<String>>(new ArrayList<String>());
     	this.albumProperty = new SimpleStringProperty();
+    	this.descriptionProperty = new SimpleStringProperty();
     }
 
     
@@ -68,6 +70,14 @@ public class Message {
 
 	public void setAlbum(String album) {
 		this.albumProperty.set(album);
+	}
+	
+	public void setDescription(String description){
+		this.descriptionProperty.set(description);
+	}
+	
+	public String getDescription(){
+		return descriptionProperty.get();
 	}
 	
 }

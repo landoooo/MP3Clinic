@@ -16,6 +16,7 @@ public class TrackBuilder {
 	public static final String DEFAULT_PATH = "Default_track_path";
 	public static final String DEFAULT_ARTIST = "Default_artist";
 	public static final String DEFAULT_ALBUM = "Default_album";
+	public static final Integer DEFAULT_YEAR = 1997;
 	public static final Integer DEFAULT_NUMBER = 0;
 
 	public static final Property<Track,Integer> number = new Property<Track,Integer>();
@@ -23,7 +24,8 @@ public class TrackBuilder {
 	public static final Property<Track,String> album = new Property<Track,String>();
 	public static final Property<Track,String> path = new Property<Track,String>();
 	public static final Property<Track,String> name = new Property<Track,String>();
-
+	public static final Property<Track,Integer> year = new Property<Track,Integer>();
+	
 	public static final Instantiator<Track> Track = new Instantiator<Track>() {
 		public Track instantiate(PropertyLookup<Track> lookup) {
 			Track track = new Track();
@@ -32,6 +34,7 @@ public class TrackBuilder {
 			track.setArtist(lookup.valueOf(artist, DEFAULT_ARTIST));
 			track.setAlbum(lookup.valueOf(album, DEFAULT_ALBUM));
 			track.setPath(lookup.valueOf(path, DEFAULT_PATH));
+			track.setYear(lookup.valueOf(year, DEFAULT_YEAR));
 			return track;
 		}
 	};

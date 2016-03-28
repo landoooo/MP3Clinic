@@ -27,6 +27,13 @@ public abstract class Reporter implements ReportingDataAware{
 		return message;
 	}
 
+	public Message createMessage(Album album, Exception e){
+		Message message = new Message(getReportingData());
+		message.setAlbum(album.toString());
+		message.setDescription(e.getMessage());
+		return message;
+	}
+	
 	public Message createMessage(){
 		Message message = new Message(getReportingData());
 		return message;

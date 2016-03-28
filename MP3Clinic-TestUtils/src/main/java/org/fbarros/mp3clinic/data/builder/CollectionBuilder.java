@@ -40,8 +40,9 @@ public class CollectionBuilder {
 	public Album buildAlbum(String artistId, String albumId, int songs) {
 		String artistStr = ARTIST_PREFIX + artistId;
 		String albumStr = ALBUM_PREFIX + albumId;
+		Integer albumYear = 1990;
 		Album newAlbum = make(a(Album, with(artist, artistStr), with(albumName, albumStr), with(numberOfTracks, songs)));
-		newAlbum.setTracks(trackCollecionBuilder.buildAlbumTracks(artistStr, albumStr, songs));
+		newAlbum.setTracks(trackCollecionBuilder.buildAlbumTracks(artistStr, albumStr, albumYear, songs));
 		return newAlbum;
 	}
 	

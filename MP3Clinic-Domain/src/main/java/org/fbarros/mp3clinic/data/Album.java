@@ -8,7 +8,7 @@ public class Album {
 	private String albumName;
 	private String artist;
 	private boolean compilation;
-	private int year;
+	private Integer year;
 	private int numberOfTracks;
 	private Collection<Track> tracks;
 	

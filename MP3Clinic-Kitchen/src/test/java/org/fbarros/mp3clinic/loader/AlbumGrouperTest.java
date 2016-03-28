@@ -36,8 +36,8 @@ public class AlbumGrouperTest extends BaseTest {
 
 	@Test
 	public void extractNumberOfTracksExceptionTest() throws NumberOfTracksCalculationException {
-		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks("1", "1", 3);
-		tracks.addAll(trackCollectionBuilder.buildAlbumTracks("2", "2", 5));
+		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks("1", "1", 1990, 3);
+		tracks.addAll(trackCollectionBuilder.buildAlbumTracks("2", "2", 1990, 5));
 		assertThat(albumGrouper.group(tracks)).hasSize(2);
 	}
 
