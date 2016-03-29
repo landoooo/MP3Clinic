@@ -9,17 +9,18 @@ import org.fbarros.mp3clinic.data.Track;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AlbumBuilderTest extends BaseTestCase {
+public class TrackCollectionBuilderTest extends BaseTestCase {
 
 	@Autowired
-	private TrackCollectionBuilder albumBuilder;
+	private TrackCollectionBuilder trackCollectionBuilder;
 
 	@Test
 	public void testBuildCompleteAlbum() {
 		int songs = 5;
+		Integer albumYear = 1990;
 		String artistName = "Artist123";
 		String albumName = "Abum 12354";
-		Collection<Track> tracks = albumBuilder.buildAlbumTracks(artistName, albumName, songs);
+		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks(artistName, albumName, albumYear, songs);
 		assertThat(tracks).hasSize(5);
 		assertThat(tracks).extracting("artist").containsOnly(artistName);
 		assertThat(tracks).extracting("album").containsOnly(albumName);
@@ -29,19 +30,14 @@ public class AlbumBuilderTest extends BaseTestCase {
 	@Test
 	public void testBuildAlbumStringStringIntListOfInteger() {
 		int songs = 5;
+		Integer albumYear = 1990;
 		String artistName = "Artist123";
 		String albumName = "Abum 12354";
-		Collection<Track> tracks = albumBuilder.buildAlbumTracks(artistName, albumName, songs, Arrays.asList(3, 4));
+		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks(artistName, albumName, albumYear, songs, Arrays.asList(3, 4));
 		assertThat(tracks).hasSize(3);
 		assertThat(tracks).extracting("artist").containsOnly(artistName);
 		assertThat(tracks).extracting("album").containsOnly(albumName);
 		assertThat(tracks).extracting("number").containsExactly(1, 2, 5);		
-	}
-
-	//////////////////////////////GETTERS / SETTERS /////////////////////////////////
-
-	public void setAlbumBuilder(TrackCollectionBuilder albumBuilder) {
-		this.albumBuilder = albumBuilder;
 	}
 
 }

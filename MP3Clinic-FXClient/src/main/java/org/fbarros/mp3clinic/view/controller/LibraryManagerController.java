@@ -13,14 +13,13 @@ import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.LibraryLoad;
 import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
-import org.fbarros.mp3clinic.loader.AlbumGrouper;
-import org.fbarros.mp3clinic.loader.AlbumsCalculator;
 import org.fbarros.mp3clinic.loader.FileSystemLoader;
-import org.fbarros.mp3clinic.loader.IAlbumGrouper;
-import org.fbarros.mp3clinic.loader.IAlbumsCalculator;
 import org.fbarros.mp3clinic.loader.ICollectionLoader;
-import org.fbarros.mp3clinic.loader.ProcessingReport;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.fbarros.mp3clinic.loader.albumcalculator.AlbumsCalculator;
+import org.fbarros.mp3clinic.loader.albumcalculator.IAlbumsCalculator;
+import org.fbarros.mp3clinic.loader.grouper.AlbumGrouper;
+import org.fbarros.mp3clinic.loader.grouper.IAlbumGrouper;
+import org.fbarros.mp3clinic.report.ProcessingReport;
 
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -36,6 +35,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class LibraryManagerController {
+	
 	@FXML
 	private TableView<LibraryLoad> libraryLoadsTable;
 	@FXML
@@ -53,11 +53,11 @@ public class LibraryManagerController {
 	private MainApp mainApp;
 	private Stage dialogStage;
 
-	private ICollectionLoader collectionLoader = new FileSystemLoader(new ReportingData(Priority.HIGH, Category.LOADING, "error.message.loading_data"));
+	private ICollectionLoader collectionLoader = new FileSystemLoader(new ReportingData(Priority.HIGH, Category.LOADING, "error.message.loading_data"), "Filesystem Loader");
 
 	private IAlbumGrouper albumGrouper = new AlbumGrouper();;
 
-	private IAlbumsCalculator albumCalculator = new AlbumsCalculator(new ReportingData(Priority.HIGH, Category.WRONG_INFORMATION, "error.message.calculating_album"));;
+	private IAlbumsCalculator albumCalculator = new AlbumsCalculator(new ReportingData(Priority.HIGH, Category.WRONG_INFORMATION, "error.message.calculating_album"), "Album Calculator");;
 	
 	private LibraryOverviewController libraryOverviewController;
 

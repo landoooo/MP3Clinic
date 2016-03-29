@@ -8,62 +8,52 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.fbarros.mp3clinic.Message;
 import org.fbarros.mp3clinic.data.Album;
-import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.data.builder.CollectionBuilder;
-import org.fbarros.mp3clinic.data.builder.TrackCollectionBuilder;
 import org.fbarros.mp3clinic.kitchen.basetest.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class DuplicatesFinderTest extends BaseTest{
+public class MissingFinderTest extends BaseTest{
 
 	@Autowired
-	private DuplicatesFinder duplicatesFinder;
+	private MissingFinder missingFinder;
 
 	@Autowired
 	private CollectionBuilder collectionBuilder;
 
-	@Autowired
-	private TrackCollectionBuilder trackCollectionBuilder;
-
 	@Test
-	public void noDuplicatesTest() {
+	public void noMissingTest() {
 		Collection<Album> collection = collectionBuilder.buildCollection(2, 2, 2);
-		List<Message> messages = duplicatesFinder.process(collection);
+		List<Message> messages = missingFinder.process(collection);
 		assertThat(messages).isEmpty();
 	}
 
 	@Test
-	public void duplicatesFinderTest() {
+	public void missingFinderTest() {
 		Collection<Album> collection = collectionBuilder.buildCollection(1, 1, 3);
 		for (Album album : collection){
-			for (Track track : album.getTracks()){
-				track.setNumber(1);
-			}
+			album.getTracks().remove(0);
 		}
-		List<Message> messages = duplicatesFinder.process(collection);
+		List<Message> messages = missingFinder.process(collection);
 		SoftAssertions softly = new SoftAssertions();
 		softly.assertThat(messages).hasSize(1);
-		softly.assertThat(messages.get(0).getReportingData()).isEqualTo(duplicatesFinder.getReportingData());
+		softly.assertThat(messages.get(0).getReportingData()).isEqualTo(missingFinder.getReportingData());
 		softly.assertThat(messages.get(0).getDate()).isToday();
 		softly.assertAll();
 	}
 
 	@Test
-	public void containsDuplicatesPositiveTest(){
+	public void hasMissingSongsPositiveTest(){
 		Album album = collectionBuilder.buildAlbum("1", "1", 3);
-		for (Track track : album.getTracks()){
-			track.setNumber(1);
-		}
-		assertThat(duplicatesFinder.containsDuplicates(album)).isTrue();
+		album.getTracks().remove(0);
+		assertThat(missingFinder.hasMissingSongs(album)).isTrue();
 
 	}
 
 	@Test
-	public void containsDuplicatesNegativeTest(){
+	public void containsMissingNegativeTest(){
 		Album album = collectionBuilder.buildAlbum("1", "1", 3);
-		assertThat(duplicatesFinder.containsDuplicates(album)).isFalse();
-
+		assertThat(missingFinder.hasMissingSongs(album)).isFalse();
 	}
 
 }

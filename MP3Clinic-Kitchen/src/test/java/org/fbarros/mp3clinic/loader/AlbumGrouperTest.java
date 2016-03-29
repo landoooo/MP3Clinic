@@ -18,6 +18,7 @@ import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.data.builder.TrackCollectionBuilder;
 import org.fbarros.mp3clinic.exceptions.NumberOfTracksCalculationException;
 import org.fbarros.mp3clinic.kitchen.basetest.BaseTest;
+import org.fbarros.mp3clinic.loader.grouper.IAlbumGrouper;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class AlbumGrouperTest extends BaseTest {
 
 	@Test
 	public void extractNumberOfTracksExceptionTest() throws NumberOfTracksCalculationException {
-		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks("1", "1", 3);
-		tracks.addAll(trackCollectionBuilder.buildAlbumTracks("2", "2", 5));
+		Collection<Track> tracks = trackCollectionBuilder.buildAlbumTracks("1", "1", 1990, 3);
+		tracks.addAll(trackCollectionBuilder.buildAlbumTracks("2", "2", 1990, 5));
 		assertThat(albumGrouper.group(tracks)).hasSize(2);
 	}
 

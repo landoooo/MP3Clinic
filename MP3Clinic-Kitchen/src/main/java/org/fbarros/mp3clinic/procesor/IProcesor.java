@@ -9,4 +9,4 @@ import org.fbarros.mp3clinic.data.Album;
 public interface IProcesor {
 
 	List<Message> process (Collection<Album> collection);
-	}
+}

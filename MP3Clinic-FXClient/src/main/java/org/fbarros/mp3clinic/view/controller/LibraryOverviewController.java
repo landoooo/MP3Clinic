@@ -2,6 +2,7 @@ package org.fbarros.mp3clinic.view.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -10,9 +11,7 @@ import org.fbarros.mp3clinic.MainApp;
 import org.fbarros.mp3clinic.Message;
 import org.fbarros.mp3clinic.Priority;
 import org.fbarros.mp3clinic.data.Album;
-import org.fbarros.mp3clinic.data.ReportingData;
-import org.fbarros.mp3clinic.procesor.DuplicatesFinder;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.fbarros.mp3clinic.procesor.IProcesor;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -52,9 +51,6 @@ public class LibraryOverviewController {
 	//private TableColumn<Message, List<String>> pathsColumn;
 	@FXML
 	private Label selectedLibraryLabel;
-
-	//TODO: new class holding all the procesors and configuration of which ones should be executed 
-	private DuplicatesFinder duplicatesFinder = new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"));
 	
 	/**
 	 * The constructor.
@@ -123,7 +119,10 @@ public class LibraryOverviewController {
 		return new Task<List<Message>>() {
 			@Override
 			protected List<Message> call() throws Exception {
-				List<Message> report = duplicatesFinder.process(albums);
+				List<Message> report = new ArrayList<Message>();
+				for (IProcesor procesor: mainApp.getProcessors().getAvailableProcessors()){
+					report.addAll(procesor.process(albums));
+				}
 				return report;
 			}
 		};

@@ -19,6 +19,8 @@ import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.data.builder.TrackCollectionBuilder;
 import org.fbarros.mp3clinic.exceptions.NumberOfTracksCalculationException;
 import org.fbarros.mp3clinic.kitchen.basetest.BaseTest;
+import org.fbarros.mp3clinic.loader.albumcalculator.AlbumsCalculator;
+import org.fbarros.mp3clinic.report.ProcessingReport;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

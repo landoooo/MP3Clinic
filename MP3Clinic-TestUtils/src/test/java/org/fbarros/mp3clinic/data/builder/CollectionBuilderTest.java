@@ -25,9 +25,4 @@ public class CollectionBuilderTest extends BaseTestCase {
 		assertThat(collection).flatExtracting("tracks").extracting("number").containsOnly(1, 2);		
 	}
 
-	////////////////////////// GETTERS / SETTERS //////////////////////////////////
-	
-	public void setCollectionBuilder(CollectionBuilder collectionBuilder){
-		this.collectionBuilder = collectionBuilder;
-	}
 }

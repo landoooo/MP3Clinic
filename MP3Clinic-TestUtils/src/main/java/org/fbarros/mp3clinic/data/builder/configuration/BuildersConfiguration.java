@@ -27,7 +27,7 @@ public class BuildersConfiguration {
 	
 	@Bean
 	public CollectionBuilder collectionBuilder(){
-		return new CollectionBuilder(trackCollectionBuilder(), albumBuilder());
+		return new CollectionBuilder(trackCollectionBuilder());
 	}
 	
 	

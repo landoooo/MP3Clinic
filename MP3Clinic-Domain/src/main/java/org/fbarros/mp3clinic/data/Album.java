@@ -1,16 +1,16 @@
 package org.fbarros.mp3clinic.data;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 public class Album {
-
+ 
 	private String albumName;
 	private String artist;
 	private boolean compilation;
-	private int year;
+	private Integer year;
 	private int numberOfTracks;
-	private Collection<Track> tracks;
+	private List<Track> tracks;
 	
 	public Album() {
 		tracks = new ArrayList<Track>();
@@ -56,11 +56,11 @@ public class Album {
 		this.numberOfTracks = numberOfTracks;
 	}
 
-	public Collection<Track> getTracks() {
+	public List<Track> getTracks() {
 		return tracks;
 	}
 
-	public void setTracks(Collection<Track> tracks) {
+	public void setTracks(List<Track> tracks) {
 		this.tracks = tracks;
 	}
 

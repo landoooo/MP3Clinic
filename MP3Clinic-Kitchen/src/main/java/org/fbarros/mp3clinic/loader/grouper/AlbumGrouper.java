@@ -1,4 +1,4 @@
-package org.fbarros.mp3clinic.loader;
+package org.fbarros.mp3clinic.loader.grouper;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +12,7 @@ public class AlbumGrouper implements IAlbumGrouper {
 	@Override
 	public Collection<List<Track>> group(Collection<Track> collection) {
 		Map<String, List<Track>> simpleAlbums = 
-				collection.stream().collect(Collectors.groupingBy(t -> t.getArtist() + t.getAlbum()));
+				collection.parallelStream().collect(Collectors.groupingBy(t -> t.getArtist() + t.getAlbum()));
 		return simpleAlbums.values();
 	}	
 }

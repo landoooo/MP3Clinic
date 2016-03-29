@@ -3,14 +3,13 @@ package org.fbarros.mp3clinic.view.controller;
 import java.io.File;
 import java.time.LocalDate;
 
-import org.fbarros.mp3clinic.MainApp;
 import org.fbarros.mp3clinic.data.LibraryLoad;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 

@@ -1,15 +1,17 @@
 package org.fbarros.mp3clinic.data.builder;
 
+import static com.natpryce.makeiteasy.MakeItEasy.a;
+import static com.natpryce.makeiteasy.MakeItEasy.make;
+import static com.natpryce.makeiteasy.MakeItEasy.with;
+import static org.fbarros.mp3clinic.data.builder.AlbumBuilder.Album;
+import static org.fbarros.mp3clinic.data.builder.AlbumBuilder.albumName;
+import static org.fbarros.mp3clinic.data.builder.AlbumBuilder.artist;
+import static org.fbarros.mp3clinic.data.builder.AlbumBuilder.numberOfTracks;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.fbarros.mp3clinic.data.Album;
-import org.fbarros.mp3clinic.data.Track;
-
-import static org.fbarros.mp3clinic.data.builder.AlbumBuilder.*;
-import static com.natpryce.makeiteasy.MakeItEasy.a;
-import static com.natpryce.makeiteasy.MakeItEasy.make;
-import static com.natpryce.makeiteasy.MakeItEasy.with;
 
 public class CollectionBuilder {
 
@@ -19,11 +21,9 @@ public class CollectionBuilder {
 
 	private TrackCollectionBuilder trackCollecionBuilder;
 	
-	private AlbumBuilder albumBuilder;
 		
-	public CollectionBuilder(TrackCollectionBuilder trackCollecionBuilder, AlbumBuilder albumBuilder){
+	public CollectionBuilder(TrackCollectionBuilder trackCollecionBuilder){
 		this.trackCollecionBuilder = trackCollecionBuilder;
-		this.albumBuilder = albumBuilder;
 	}
 	
 	public Collection<Album> buildCollection (int artists, int albums, int songs){
@@ -40,8 +40,9 @@ public class CollectionBuilder {
 	public Album buildAlbum(String artistId, String albumId, int songs) {
 		String artistStr = ARTIST_PREFIX + artistId;
 		String albumStr = ALBUM_PREFIX + albumId;
+		Integer albumYear = 1990;
 		Album newAlbum = make(a(Album, with(artist, artistStr), with(albumName, albumStr), with(numberOfTracks, songs)));
-		newAlbum.setTracks(trackCollecionBuilder.buildAlbumTracks(artistStr, albumStr, songs));
+		newAlbum.setTracks(trackCollecionBuilder.buildAlbumTracks(artistStr, albumStr, albumYear, songs));
 		return newAlbum;
 	}
 	

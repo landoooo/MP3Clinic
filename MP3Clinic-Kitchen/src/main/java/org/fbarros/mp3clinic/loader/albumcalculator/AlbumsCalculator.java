@@ -1,34 +1,39 @@
-package org.fbarros.mp3clinic.loader;
+package org.fbarros.mp3clinic.loader.albumcalculator;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
+import org.fbarros.mp3clinic.exceptions.AlbumYearCalculationException;
 import org.fbarros.mp3clinic.exceptions.NumberOfTracksCalculationException;
 import org.fbarros.mp3clinic.procesor.Reporter;
+import org.fbarros.mp3clinic.report.ProcessingReport;
 
 public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
 
-	public AlbumsCalculator(ReportingData reportingData) {
-		super(reportingData);
+	public AlbumsCalculator(ReportingData reportingData, String name) {
+		super(reportingData, name);
 	}
 	
 	@Override
-	public ProcessingReport<Album> calculateAlbum(final Collection<Track> tracks, ProcessingReport<Album> result) {
+	public ProcessingReport<Album> calculateAlbum(final List<Track> tracks, ProcessingReport<Album> result) {
 		Album album = new Album();
 		//TODO: verify all the artists and albums from a folder are the same
 		// and throw DifferentArtists and DifferentAlbum exceptions
 		try{
-			album.setNumberOfTracks(extractNumberOfTracks(tracks));
 			Track[] tracksArr = new Track[tracks.size()];
 			tracks.toArray(tracksArr);
 			album.setArtist(tracksArr[0].getArtist());
 			album.setAlbumName(tracksArr[0].getAlbum());
 			album.setTracks(tracks);
+			album.setNumberOfTracks(extractNumberOfTracks(tracks));
+			album.setYear(extractAlbumYear(tracks));
 			result.addElement(album);
-		} catch (NumberOfTracksCalculationException e) {
-			result.addMessage(createMessage(album));
+		} catch (NumberOfTracksCalculationException | AlbumYearCalculationException e) {
+			result.addMessage(createMessage(album, e));
 		}
 		return result;
 	}
@@ -45,4 +50,13 @@ public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
 		return numberOfTracks;
 	}
 	
+	public int extractAlbumYear(final Collection<Track> tracks) throws AlbumYearCalculationException{
+		//TODO: treat compilations
+		List<Integer> years = tracks.parallelStream().map(Track::getYear).distinct().collect(Collectors.toList());
+		if (years.size() == 1){
+			return years.get(0);
+		} else {
+			throw new AlbumYearCalculationException("The year of tracks of the album is not coherent");	
+		}
+	}
 }

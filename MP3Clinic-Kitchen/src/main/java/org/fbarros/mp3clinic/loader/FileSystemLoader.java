@@ -13,11 +13,12 @@ import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.data.loader.TrackLoader;
 import org.fbarros.mp3clinic.procesor.Reporter;
+import org.fbarros.mp3clinic.report.ProcessingReport;
 
 public class FileSystemLoader extends Reporter implements ICollectionLoader{
 	
-	public FileSystemLoader(ReportingData reportingData) {
-		super(reportingData);
+	public FileSystemLoader(ReportingData reportingData, String name) {
+		super(reportingData, name);
 	}
 
 	@Override

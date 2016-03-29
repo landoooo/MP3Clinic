@@ -1,12 +1,15 @@
 package org.fbarros.mp3clinic;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.LibraryLoad;
 import org.fbarros.mp3clinic.data.ReportingData;
+import org.fbarros.mp3clinic.procesor.DuplicatesFinder;
+import org.fbarros.mp3clinic.procesor.MissingFinder;
 import org.fbarros.mp3clinic.view.controller.LibraryOverviewController;
 import org.fbarros.mp3clinic.view.controller.RootLayoutController;
 
@@ -24,6 +27,8 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
+    private Processors processors;
+    
     //TODO: move this two objects into an executionData object
     
     /**
@@ -34,12 +39,17 @@ public class MainApp extends Application {
     //Selected libraryLoad
     private LibraryLoad currentLibraryLoad;
 	private Collection<Album> albums;
-    
+	
     /**
      * Constructor
      */
     public MainApp() {
-    	//TODO: initialization, preferences, libraryLoads, load last libraryLoad...
+
+    	//Procesors
+    	DuplicatesFinder duplicatesFinder = new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"), "Duplicates Finder");
+    	MissingFinder missingFinder = new MissingFinder(new ReportingData(Priority.HIGH, Category.MISSING_INFORMATION, "error.message.missing_tracks"), "Missing Songs Finder");
+    	processors = new Processors(Arrays.asList(duplicatesFinder, missingFinder));
+    
     }
     
     @Override
@@ -144,7 +154,12 @@ public class MainApp extends Application {
 	}
 
 	public void addMessages(List<Message> value) {
-		this.messages.addAll(value);
-		
+		this.messages.addAll(value);	
 	}
+
+	public Processors getProcessors() {
+		return processors;
+	}
+	
+	
 }

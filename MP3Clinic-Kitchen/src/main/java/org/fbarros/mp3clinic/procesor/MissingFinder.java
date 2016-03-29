@@ -9,24 +9,28 @@ import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.procesor.iterator.CollectionIterator;
 
-public class DuplicatesFinder extends Reporter implements IProcesor  {
+public class MissingFinder extends Reporter implements IProcesor, IMessageCreator {
 
-	public DuplicatesFinder(ReportingData reportingData, String name) {
+	public MissingFinder(ReportingData reportingData, String name) {
 		super(reportingData, name);
 	}
 
 	@Override
 	public List<Message> process(Collection<Album> collection) {
-		return CollectionIterator.apply(collection, a -> a.getNumberOfTracks() > 0 && containsDuplicates(a), a -> createMessage(a));
+		return CollectionIterator.apply(
+				collection, 
+				a -> a.getNumberOfTracks() > 0 && hasMissingSongs(a), 
+				a -> createMessage(a));
 	}
-	
-	public boolean containsDuplicates (Album album){
+
+	public boolean hasMissingSongs (Album album){
 		boolean[] exist = new boolean[album.getNumberOfTracks()];
 		for (Track track : album.getTracks()){
-			if(track.getNumber() > 0 && track.getNumber() <= album.getNumberOfTracks() && exist[track.getNumber()-1]){
+			exist[track.getNumber()-1] = true;
+		}
+		for (int i = 0; i< exist.length; i++){
+			if (!exist[i]){
 				return true;
-			} else {
-				exist[track.getNumber()-1] = true;
 			}
 		}
 		return false;

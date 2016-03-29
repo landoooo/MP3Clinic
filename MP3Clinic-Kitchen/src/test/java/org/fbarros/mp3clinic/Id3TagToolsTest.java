@@ -6,6 +6,7 @@
 package org.fbarros.mp3clinic;
 
 import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.*;
 
 import org.fbarros.mp3clinic.exceptions.NoTrackNumberException;
 import org.junit.Test;
@@ -51,12 +52,11 @@ public class Id3TagToolsTest {
         assertEquals(expResult, result);
     }
     
-    @Test(expected = NoTrackNumberException.class)
-    public void testGetTrackNumberFromEmpty() throws NoTrackNumberException {
+    @Test
+    public void testGetTrackNumberFromEmpty(){
         System.out.println("getTrackNumber");
         String trackNumbers = "";
-        String result = "";
-        result = Id3TagTools.getTrackNumber(trackNumbers);
+        assertThatExceptionOfType(NoTrackNumberException.class).isThrownBy(() -> { Id3TagTools.getTrackNumber(trackNumbers); });
     }
 
     @Test

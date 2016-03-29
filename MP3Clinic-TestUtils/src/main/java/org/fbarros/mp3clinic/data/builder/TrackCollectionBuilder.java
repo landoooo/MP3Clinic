@@ -18,17 +18,18 @@ public class TrackCollectionBuilder {
 	public static final String PATH_PREFIX = "Path/to/" + NAME_PREFIX;
 	
 	@SuppressWarnings("unchecked")
-	public Collection<Track> buildAlbumTracks (String albumArtist, String albumAlbum, int songs){
-		Collection<Track> albumTracks = new ArrayList<Track>();
+	public List<Track> buildAlbumTracks (String albumArtist, String albumAlbum, Integer albumYear, int songs){
+		List<Track> albumTracks = new ArrayList<Track>();
 		for (int i = 1; i <= songs; i++ ){
 			albumTracks.add(make(a(Track, with (artist, albumArtist), with(album, albumAlbum), 
-					with(name, NAME_PREFIX + i ), with(number, i), with(path, PATH_PREFIX + i))));
+					with(name, NAME_PREFIX + i ), with(number, i), with(path, PATH_PREFIX + i),
+					with(year, albumYear))));
 		}
 		return albumTracks;
 	}
 
-	public Collection<Track> buildAlbumTracks (String albumArtist, String albumAlbum, int songs, List<Integer> missingSongs){
-		Collection<Track> albumTracks = buildAlbumTracks (albumArtist, albumAlbum, songs);
+	public Collection<Track> buildAlbumTracks (String albumArtist, String albumAlbum, Integer albumYear, int songs, List<Integer> missingSongs){
+		Collection<Track> albumTracks = buildAlbumTracks (albumArtist, albumAlbum, albumYear, songs);
 		Iterator<Track> iter = albumTracks.iterator();
 		while (iter.hasNext()) {
 		    Track track = iter.next();

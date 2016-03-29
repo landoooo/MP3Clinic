@@ -1,4 +1,4 @@
-package org.fbarros.mp3clinic.loader;
+package org.fbarros.mp3clinic.loader.grouper;
 
 import java.util.Collection;
 import java.util.List;

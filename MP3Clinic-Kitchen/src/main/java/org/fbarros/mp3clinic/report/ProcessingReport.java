@@ -1,4 +1,4 @@
-package org.fbarros.mp3clinic.loader;
+package org.fbarros.mp3clinic.report;
 
 import java.util.ArrayList;
 import java.util.Collection;

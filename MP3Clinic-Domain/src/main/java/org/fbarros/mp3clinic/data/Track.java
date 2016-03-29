@@ -6,7 +6,7 @@ public class Track {
 	private String path;
 	private String artist;
 	private String album;
-	
+	private Integer year;
 	private Integer number;
 	
 	public String getName(){
@@ -49,7 +49,14 @@ public class Track {
 		this.number = number;
 	}
 
-	
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
 	@Override
 	public String toString() {
 		return "[" + number + "-" + name + "]";
