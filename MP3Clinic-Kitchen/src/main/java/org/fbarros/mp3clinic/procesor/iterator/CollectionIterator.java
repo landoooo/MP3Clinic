@@ -12,7 +12,9 @@ import org.fbarros.mp3clinic.data.Album;
 
 public class CollectionIterator {
 
-	public static List<Message> apply(Collection<Album> albums, Predicate<Album> predicate, Function<Album, Message> messageCreator) {
+	public static List<Message> apply(Collection<Album> albums, 
+			Predicate<Album> predicate, 
+			Function<Album, Message> messageCreator) {
 		List<Album> selectedAlbums = albums.stream()
 				.filter(predicate)
 				.collect(toList());

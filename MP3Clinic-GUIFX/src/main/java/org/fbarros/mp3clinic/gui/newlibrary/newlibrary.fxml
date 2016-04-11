@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="newLibraryPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="287.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fbarros.mp3clinic.gui.newlibrary.NewLibraryPresenter">
+   <children>
+      <Label fx:id="libraryPathLabel" layoutX="14.0" layoutY="72.0" prefHeight="17.0" prefWidth="187.0" text="%newlibrary.path.prompt" />
+      <HBox layoutX="119.0" layoutY="127.0">
+         <children>
+            <Button fx:id="loadButton" layoutX="143.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleLoadButton" text="%newlibrary.load.button.label">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="cancelButton" layoutX="228.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleCancelButton" text="%newlibrary.cancel.button.label">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </HBox>
+      <Button fx:id="browseButton" layoutX="210.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleBrowseButton" text="%newlibrary.browse.button.label" />
+      <Label layoutX="14.0" layoutY="33.0" text="%newlibrary.name.label" />
+      <TextField fx:id="nameField" layoutX="69.0" layoutY="29.0" prefHeight="25.0" prefWidth="196.0" promptText="%newlibrary.name.prompt" />
+      <ImageView fx:id="loadingImage" fitHeight="52.0" fitWidth="54.0" layoutX="42.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>

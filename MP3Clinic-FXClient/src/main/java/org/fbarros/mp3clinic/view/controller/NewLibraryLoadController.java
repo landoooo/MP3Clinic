@@ -70,7 +70,8 @@ public class NewLibraryLoadController {
         	alert.setContentText(errorMessage);
         	alert.showAndWait();      	
             return false;
-        }	}
+        }	
+    }
 
 	@FXML
 	private void handleCancelButton() {

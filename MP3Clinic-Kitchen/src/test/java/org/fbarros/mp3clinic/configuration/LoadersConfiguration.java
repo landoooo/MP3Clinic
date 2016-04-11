@@ -14,12 +14,12 @@ public class LoadersConfiguration {
 
 	@Bean
 	public FileSystemLoader fileSystemLoader(){
-		return new FileSystemLoader(new ReportingData(Priority.HIGH, Category.LOADING, "error.message.loading_data"), "Filesystem loader");
+		return new FileSystemLoader(new ReportingData(Priority.HIGH, Category.LOADING, "error.message.loading_data", "Filesystem loader"));
 	}
 
 	@Bean
 	public AlbumsCalculator albumsCalculator(){
-		return new AlbumsCalculator(new ReportingData(Priority.HIGH, Category.WRONG_INFORMATION, "error.message.calculating_album"), "Album calculator");
+		return new AlbumsCalculator(new ReportingData(Priority.HIGH, Category.WRONG_INFORMATION, "error.message.calculating_album", "Album calculator"));
 	}
 
 	@Bean

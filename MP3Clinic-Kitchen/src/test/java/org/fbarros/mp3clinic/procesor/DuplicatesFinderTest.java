@@ -44,7 +44,6 @@ public class DuplicatesFinderTest extends BaseTest{
 		List<Message> messages = duplicatesFinder.process(collection);
 		SoftAssertions softly = new SoftAssertions();
 		softly.assertThat(messages).hasSize(1);
-		softly.assertThat(messages.get(0).getReportingData()).isEqualTo(duplicatesFinder.getReportingData());
 		softly.assertThat(messages.get(0).getDate()).isToday();
 		softly.assertAll();
 	}

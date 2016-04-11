@@ -2,9 +2,8 @@ package org.fbarros.mp3clinic.data;
 
 import org.fbarros.mp3clinic.Category;
 import org.fbarros.mp3clinic.Priority;
-import javafx.beans.property.IntegerProperty;
+
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -14,13 +13,15 @@ public class ReportingData {
 	private ObjectProperty<Priority> priorityProperty;
 	private ObjectProperty<Category> categoryProperty;
 	private StringProperty messageKeyProperty;
+	private StringProperty processorName;
 
 	
-	public ReportingData(Priority priority, Category category, String messageKey) {
+	public ReportingData(Priority priority, Category category, String messageKey, String processorName) {
 		super();
 		this.priorityProperty = new SimpleObjectProperty<Priority>(priority);
 		this.categoryProperty = new SimpleObjectProperty<Category>(category);
 		this.messageKeyProperty = new SimpleStringProperty(messageKey);
+		this.processorName = new SimpleStringProperty();
 	}
 
 	@Override
@@ -83,6 +84,14 @@ public class ReportingData {
 
 	public void setMessageKey(String messageKey) {
 		this.messageKeyProperty.set(messageKey);
+	}
+	
+	public String getProcessorName(){
+		return processorName.get();
+	}
+	
+	public void setProcessorName(String name){
+		this.processorName.set(name);	
 	}
 
 

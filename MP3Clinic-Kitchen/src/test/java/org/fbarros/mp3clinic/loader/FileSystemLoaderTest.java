@@ -17,7 +17,7 @@ public class FileSystemLoaderTest extends BaseTest{
 	
 	@Test
 	public void loadCollectionTest() {
-		Collection<Track> collection = fsLoader.loadCollection(new File(ClassLoader.getSystemResource("TestCollection").getFile())).getCollection();
+		Collection<Track> collection = fsLoader.getLoader(new File(ClassLoader.getSystemResource("TestCollection").getFile())).getCollection();
 		assertThat(collection).hasSize(8);
 	}
 	

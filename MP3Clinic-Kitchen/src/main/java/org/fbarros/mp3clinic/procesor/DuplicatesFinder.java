@@ -8,16 +8,21 @@ import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.procesor.iterator.CollectionIterator;
+import org.fbarros.mp3clinic.report.ReporterFactory;
 
-public class DuplicatesFinder extends Reporter implements IProcesor  {
+public class DuplicatesFinder implements IProcesor  {
 
-	public DuplicatesFinder(ReportingData reportingData, String name) {
-		super(reportingData, name);
+	private Reporter reporter;
+	
+	public DuplicatesFinder(ReportingData reportingData) {
+		this.reporter = ReporterFactory.getReporter(reportingData);
 	}
 
 	@Override
 	public List<Message> process(Collection<Album> collection) {
-		return CollectionIterator.apply(collection, a -> a.getNumberOfTracks() > 0 && containsDuplicates(a), a -> createMessage(a));
+		return CollectionIterator.apply(collection, 
+				a -> a.getNumberOfTracks() > 0 && containsDuplicates(a), 
+				a -> reporter.createMessage(a));
 	}
 	
 	public boolean containsDuplicates (Album album){

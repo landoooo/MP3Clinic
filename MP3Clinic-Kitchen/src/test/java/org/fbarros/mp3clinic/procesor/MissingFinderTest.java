@@ -37,7 +37,6 @@ public class MissingFinderTest extends BaseTest{
 		List<Message> messages = missingFinder.process(collection);
 		SoftAssertions softly = new SoftAssertions();
 		softly.assertThat(messages).hasSize(1);
-		softly.assertThat(messages.get(0).getReportingData()).isEqualTo(missingFinder.getReportingData());
 		softly.assertThat(messages.get(0).getDate()).isToday();
 		softly.assertAll();
 	}

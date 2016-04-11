@@ -8,7 +8,7 @@ import org.fbarros.mp3clinic.Message;
 
 public class ProcessingReport<T> {
 
-	private Collection<T> collection = new ArrayList<T>();
+	private List<T> collection = new ArrayList<T>();
 	
 	private List<Message> messages = new ArrayList<Message>();
 
@@ -25,12 +25,17 @@ public class ProcessingReport<T> {
 		collection.add(element);
 	}
 	
-	public Collection<T> getCollection() {
+	public List<T> getCollection() {
 		return collection;
 	}
 
 	public Collection<Message> getMessages() {
 		return messages;
+	}
+
+	public void addMessages(Collection<Message> messages2) {
+		this.messages.addAll(messages2);
+		
 	}
 	
 }

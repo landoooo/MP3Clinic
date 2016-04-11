@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.fbarros.mp3clinic.Category;
+import org.fbarros.mp3clinic.Message;
+import org.fbarros.mp3clinic.Priority;
 import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
@@ -11,11 +14,18 @@ import org.fbarros.mp3clinic.exceptions.AlbumYearCalculationException;
 import org.fbarros.mp3clinic.exceptions.NumberOfTracksCalculationException;
 import org.fbarros.mp3clinic.procesor.Reporter;
 import org.fbarros.mp3clinic.report.ProcessingReport;
+import org.fbarros.mp3clinic.report.ReporterFactory;
 
-public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
+public class AlbumsCalculator implements IAlbumsCalculator{
+	
+	private Reporter reporter;
+	
+	public AlbumsCalculator(){
+		this.reporter =  ReporterFactory.getReporter(new ReportingData(Priority.HIGH, Category.WRONG_INFORMATION, "error.message.calculatingalbum", "Album Calculator"));
+	}
 
-	public AlbumsCalculator(ReportingData reportingData, String name) {
-		super(reportingData, name);
+	public AlbumsCalculator(ReportingData reportingData) {
+		this.reporter = ReporterFactory.getReporter(reportingData);
 	}
 	
 	@Override
@@ -33,7 +43,10 @@ public class AlbumsCalculator extends Reporter implements IAlbumsCalculator{
 			album.setYear(extractAlbumYear(tracks));
 			result.addElement(album);
 		} catch (NumberOfTracksCalculationException | AlbumYearCalculationException e) {
-			result.addMessage(createMessage(album, e));
+			Message message = reporter.createMessage(album);
+			message.setException(e);
+			message.setDescription(e.getMessage());
+			result.addMessage(message);
 		}
 		return result;
 	}

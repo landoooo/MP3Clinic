@@ -1,4 +1,4 @@
-package org.fbarros.mp3clinic;
+package org.fbarros.mp3clinic.gui.configuration;
 
 import java.util.ArrayList;
 import java.util.List;

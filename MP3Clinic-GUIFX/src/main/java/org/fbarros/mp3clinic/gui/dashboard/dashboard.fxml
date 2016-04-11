@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fbarros.mp3clinic.gui.dashboard.DashboardPresenter">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveMenuItem" text="Save" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.4391691394658754" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="600.0" orientation="VERTICAL">
+        <items>
+            <Pane fx:id="libraryPane" maxHeight="150.0" minHeight="150.0" minWidth="600.0" prefHeight="150.0" />
+            <GridPane fx:id="messagesPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+        </items>
+      </SplitPane>
+   </children>
+</VBox>

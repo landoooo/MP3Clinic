@@ -8,11 +8,14 @@ import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.procesor.iterator.CollectionIterator;
+import org.fbarros.mp3clinic.report.ReporterFactory;
 
-public class MissingFinder extends Reporter implements IProcesor, IMessageCreator {
+public class MissingFinder implements IProcesor {
 
-	public MissingFinder(ReportingData reportingData, String name) {
-		super(reportingData, name);
+	private Reporter reporter;
+	
+	public MissingFinder(ReportingData reportingData) {
+		this.reporter = ReporterFactory.getReporter(reportingData);
 	}
 
 	@Override
@@ -20,7 +23,7 @@ public class MissingFinder extends Reporter implements IProcesor, IMessageCreato
 		return CollectionIterator.apply(
 				collection, 
 				a -> a.getNumberOfTracks() > 0 && hasMissingSongs(a), 
-				a -> createMessage(a));
+				a -> reporter.createMessage(a));
 	}
 
 	public boolean hasMissingSongs (Album album){
