@@ -11,7 +11,7 @@
 	<artifactId>MP3Clinic-GUIFX</artifactId>
 	<packaging>jar</packaging>
 
-	<name>MP3Clinic-FX</name>
+	<name>MP3Clinic-GUIFX</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
