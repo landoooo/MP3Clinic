@@ -13,12 +13,12 @@ public class ProcesorsConfiguration {
 
 	@Bean 
 	public DuplicatesFinder duplicatesFinder(){
-		return new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"), "Duplicates Finder");
+		return new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks", "Duplicates Finder"));
 	}
 
 	@Bean 
 	public MissingFinder missingFinder(){
-		return new MissingFinder(new ReportingData(Priority.HIGH, Category.MISSING_INFORMATION, "error.message.missing_tracks"), "Missing Songs Finder");
+		return new MissingFinder(new ReportingData(Priority.HIGH, Category.MISSING_INFORMATION, "error.message.missing_tracks", "Missing Songs Finder"));
 	}
 
 

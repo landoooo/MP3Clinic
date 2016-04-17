@@ -53,12 +53,6 @@ public class LibraryManagerController {
 	private MainApp mainApp;
 	private Stage dialogStage;
 
-	private ICollectionLoader collectionLoader = new FileSystemLoader(new ReportingData(Priority.HIGH, Category.LOADING, "error.message.loading_data"), "Filesystem Loader");
-
-	private IAlbumGrouper albumGrouper = new AlbumGrouper();;
-
-	private IAlbumsCalculator albumCalculator = new AlbumsCalculator(new ReportingData(Priority.HIGH, Category.WRONG_INFORMATION, "error.message.calculating_album"), "Album Calculator");;
-	
 	private LibraryOverviewController libraryOverviewController;
 
 	/**
@@ -133,21 +127,6 @@ public class LibraryManagerController {
 	@FXML
 	private void handleCancelButton() {
 		dialogStage.close();
-	}
-
-	private Task<ProcessingReport<Album>> createCollectionLoaderTask(File folder) {
-		return new Task<ProcessingReport<Album>>() {
-			@Override
-			protected ProcessingReport<Album> call() throws Exception {
-				ProcessingReport<Track> report = collectionLoader.loadCollection(folder);
-				Collection<List<Track>> groupedAlbums = albumGrouper.group(report.getCollection());
-				ProcessingReport<Album> result = new ProcessingReport<>();
-				for(List<Track> tracks : groupedAlbums){
-					albumCalculator.calculateAlbum(tracks, result);
-				}
-				return result;
-			}
-		};
 	}
 
 	public void setCurrentLibraryLoad(LibraryLoad currentLibraryLoad) {

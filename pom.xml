@@ -11,8 +11,8 @@
 	<name>MP3Clinic</name>
 
 	<modules>
+		<module>MP3Clinic-GUIFX</module>
 		<module>MP3Clinic-Kitchen</module>
-		<module>MP3Clinic-FXClient</module>
 		<module>MP3Clinic-TestUtils</module>
 		<module>MP3Clinic-Domain</module>
 	</modules>

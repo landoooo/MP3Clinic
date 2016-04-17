@@ -4,8 +4,9 @@ import java.io.File;
 
 import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.report.ProcessingReport;
+import javafx.concurrent.Task;
 
 public interface ICollectionLoader {
 
-	ProcessingReport<Track> loadCollection (File dir);
+	Task<ProcessingReport<Track>> getLoader(File dir);
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="600.0" prefHeight="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fbarros.mp3clinic.gui.dashboard.library.LibraryPresenter">
+   <children>
+      <Pane layoutX="2.0" layoutY="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="600.0" prefHeight="150.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="125.0" text="%library.name.label" />
+            <Button fx:id="newLibraryButton" layoutX="425.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleNewLibraryButton" text="%library.new.button.label" />
+            <Button fx:id="scanButton" layoutX="424.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleScanButton" text="%library.scan.button.label" />
+            <Label layoutX="14.0" layoutY="39.0" text="%library.numberofalbums.label" />
+            <Label layoutX="14.0" layoutY="65.0" text="%library.loaddate.label" />
+            <Label layoutX="14.0" layoutY="94.0" text="%library.path.label" />
+            <Label fx:id="loadedLibraryName" layoutX="162.0" layoutY="14.0" prefHeight="17.0" prefWidth="249.0" text="%library.name.prompt" />
+            <Label fx:id="loadedLibraryNumberOfAlbums" layoutX="162.0" layoutY="39.0" prefHeight="17.0" prefWidth="249.0" text="%library.numberofalbums.prompt" />
+            <Label fx:id="loadedLibraryLoadDate" layoutX="162.0" layoutY="65.0" prefHeight="17.0" prefWidth="249.0" text="%library.loaddate.prompt" />
+            <Label fx:id="loadedLibraryPath" layoutX="159.0" layoutY="94.0" prefHeight="17.0" prefWidth="249.0" text="%library.path.prompt" />
+            <Button fx:id="loadLibraryButton" layoutX="424.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLoadLibraryButton" text="%library.load.button.label" />
+            <ImageView fx:id="loadingImage" fitHeight="63.0" fitWidth="125.0" layoutX="452.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../resources/img/loading.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

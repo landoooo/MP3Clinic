@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="library" type="persistedLibraryLoad"/>
+
+  <xs:complexType name="persistedLibraryLoad">
+    <xs:sequence>
+      <xs:element name="album" type="album" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="libraryLoad" type="libraryLoad" minOccurs="0"/>
+      <xs:element name="message" type="message" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="album">
+    <xs:sequence>
+      <xs:element name="albumName" type="xs:string" minOccurs="0"/>
+      <xs:element name="artist" type="xs:string" minOccurs="0"/>
+      <xs:element name="compilation" type="xs:boolean"/>
+      <xs:element name="numberOfTracks" type="xs:int"/>
+      <xs:element name="tracks" type="track" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="year" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="track">
+    <xs:sequence>
+      <xs:element name="album" type="xs:string" minOccurs="0"/>
+      <xs:element name="artist" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="number" type="xs:int" minOccurs="0"/>
+      <xs:element name="path" type="xs:string" minOccurs="0"/>
+      <xs:element name="year" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="libraryLoad">
+    <xs:sequence>
+      <xs:element name="albumCollectionXMLPath" type="xs:string" minOccurs="0"/>
+      <xs:element name="albums" type="album" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="date" type="localDateTime" minOccurs="0"/>
+      <xs:element name="libraryPath" type="xs:string" minOccurs="0"/>
+      <xs:element name="messages" type="message" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="reportXMLPath" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="localDateTime" final="extension restriction">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element name="album" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="paths" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

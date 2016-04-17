@@ -5,7 +5,7 @@
  */
 package org.fbarros.mp3clinic;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +23,15 @@ import javafx.beans.property.StringProperty;
 public class Message {
     
     private ObjectProperty<ReportingData> reportingDataProperty;
-    private ObjectProperty<LocalDate> dateProperty;    
+    private ObjectProperty<LocalDateTime> dateProperty;    
     private StringProperty albumProperty;
     private ObjectProperty<List<String>> pathsProperty;
     private StringProperty descriptionProperty;
+    private Exception exception;
     
     public Message(ReportingData reportingData){
     	this.reportingDataProperty = new SimpleObjectProperty<ReportingData>(reportingData);
-    	this.dateProperty= new SimpleObjectProperty<LocalDate>(LocalDate.now());
+    	this.dateProperty= new SimpleObjectProperty<LocalDateTime>(LocalDateTime.now());
     	this.pathsProperty= new SimpleObjectProperty<List<String>>(new ArrayList<String>());
     	this.albumProperty = new SimpleStringProperty();
     	this.descriptionProperty = new SimpleStringProperty();
@@ -44,7 +45,7 @@ public class Message {
 		return "Message [" + reportingDataProperty + " " + dateProperty + ": " + albumProperty + " - " + pathsProperty + "]";
 	}
 
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return dateProperty.get();
 	}
 
@@ -78,6 +79,10 @@ public class Message {
 	
 	public String getDescription(){
 		return descriptionProperty.get();
+	}
+
+	public void setException(Exception e) {
+		this.exception = e;		
 	}
 	
 }

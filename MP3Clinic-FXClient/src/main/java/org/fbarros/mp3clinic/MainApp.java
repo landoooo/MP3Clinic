@@ -8,6 +8,7 @@ import java.util.List;
 import org.fbarros.mp3clinic.data.Album;
 import org.fbarros.mp3clinic.data.LibraryLoad;
 import org.fbarros.mp3clinic.data.ReportingData;
+import org.fbarros.mp3clinic.gui.configuration.Processors;
 import org.fbarros.mp3clinic.procesor.DuplicatesFinder;
 import org.fbarros.mp3clinic.procesor.MissingFinder;
 import org.fbarros.mp3clinic.view.controller.LibraryOverviewController;
@@ -46,8 +47,8 @@ public class MainApp extends Application {
     public MainApp() {
 
     	//Procesors
-    	DuplicatesFinder duplicatesFinder = new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks"), "Duplicates Finder");
-    	MissingFinder missingFinder = new MissingFinder(new ReportingData(Priority.HIGH, Category.MISSING_INFORMATION, "error.message.missing_tracks"), "Missing Songs Finder");
+    	DuplicatesFinder duplicatesFinder = new DuplicatesFinder(new ReportingData(Priority.HIGH, Category.DUPLICATED, "error.message.duplicate_tracks", "Duplicates Finder"));
+    	MissingFinder missingFinder = new MissingFinder(new ReportingData(Priority.HIGH, Category.MISSING_INFORMATION, "error.message.missing_tracks", "Missing Songs Finder"));
     	processors = new Processors(Arrays.asList(duplicatesFinder, missingFinder));
     
     }
