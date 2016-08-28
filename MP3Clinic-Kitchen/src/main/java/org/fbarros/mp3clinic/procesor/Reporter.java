@@ -27,6 +27,13 @@ public class Reporter implements ReportingDataAware{
 		return message;
 	}
 	
+	public Message createMessage(Album album, String txt){
+		Message message = new Message(getReportingData());
+		message.setAlbum(album.toString());
+		message.setDescription(txt);
+		return message;
+	}
+	
 	///////////////// GETTERS / SETTERS ////////////////////////
 	
 	public ReportingData getReportingData() {

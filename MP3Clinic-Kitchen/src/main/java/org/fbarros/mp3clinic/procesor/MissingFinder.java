@@ -26,6 +26,11 @@ public class MissingFinder implements IProcesor {
 				a -> reporter.createMessage(a));
 	}
 
+	/**
+	 * 
+	 * @param album
+	 * @return
+	 */
 	public boolean hasMissingSongs (Album album){
 		boolean[] exist = new boolean[album.getNumberOfTracks()];
 		for (Track track : album.getTracks()){

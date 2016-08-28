@@ -13,7 +13,7 @@ import org.fbarros.mp3clinic.data.ReportingData;
 import org.fbarros.mp3clinic.gui.configuration.ApplicationConfiguration;
 import org.fbarros.mp3clinic.gui.configuration.Processors;
 import org.fbarros.mp3clinic.gui.dashboard.DashboardView;
-import org.fbarros.mp3clinic.procesor.DuplicatesFinder;
+import org.fbarros.mp3clinic.procesor.DuplicateSongsFinder;
 import org.fbarros.mp3clinic.procesor.MissingFinder;
 
 import com.airhacks.afterburner.injection.Injector;

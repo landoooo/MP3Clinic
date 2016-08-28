@@ -15,10 +15,10 @@ import org.fbarros.mp3clinic.kitchen.basetest.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class DuplicatesFinderTest extends BaseTest{
+public class DuplicateSongsFinderTest extends BaseTest{
 
 	@Autowired
-	private DuplicatesFinder duplicatesFinder;
+	private DuplicateSongsFinder duplicatesFinder;
 
 	@Autowired
 	private CollectionBuilder collectionBuilder;

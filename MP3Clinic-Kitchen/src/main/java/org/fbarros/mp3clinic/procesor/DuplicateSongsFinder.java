@@ -10,11 +10,11 @@ import org.fbarros.mp3clinic.data.Track;
 import org.fbarros.mp3clinic.procesor.iterator.CollectionIterator;
 import org.fbarros.mp3clinic.report.ReporterFactory;
 
-public class DuplicatesFinder implements IProcesor  {
+public class DuplicateSongsFinder implements IProcesor  {
 
 	private Reporter reporter;
 	
-	public DuplicatesFinder(ReportingData reportingData) {
+	public DuplicateSongsFinder(ReportingData reportingData) {
 		this.reporter = ReporterFactory.getReporter(reportingData);
 	}
 
